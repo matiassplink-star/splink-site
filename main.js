@@ -108,6 +108,13 @@ if (chatButton) {
     });
 }
 
+const closeChat = document.getElementById('closeChat');
+if (closeChat) {
+    closeChat.addEventListener('click', () => {
+        chatWindow.classList.remove('show');
+    });
+}
+
 const addMessage = (text, type) => {
     const msg = document.createElement('div');
     msg.className = `message ${type}`;
