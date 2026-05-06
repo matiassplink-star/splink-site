@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumière Imóveis de Luxo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --gold: #d4af37;
+            --bg: #ffffff;
+            --text: #333333;
+        }
+        body {
+            margin: 0;
+            font-family: 'Lato', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        header {
+            padding: 30px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            box-sizing: border-box;
+            z-index: 100;
+            border-bottom: 1px solid #eee;
+        }
+        .logo { font-size: 28px; font-family: 'Playfair Display', serif; color: var(--primary); font-weight: 700; letter-spacing: 2px; }
+        .logo span { color: var(--gold); }
+        .nav-links a { margin-left: 30px; text-decoration: none; color: var(--text); text-transform: uppercase; font-size: 13px; letter-spacing: 1px; }
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px;
+        }
+        .hero-content h1 { font-size: 64px; margin-bottom: 20px; font-weight: 400; }
+        .hero-content p { font-size: 20px; font-weight: 300; letter-spacing: 2px; margin-bottom: 40px; }
+        .btn-gold { padding: 15px 40px; background: var(--gold); color: white; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 14px; transition: 0.3s; }
+        .btn-gold:hover { background: #b5952f; }
+        .properties { padding: 100px 50px; text-align: center; }
+        .properties h2 { font-size: 40px; color: var(--primary); margin-bottom: 60px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .card { text-align: left; background: #f9f9f9; padding-bottom: 20px; }
+        .card img { width: 100%; height: 250px; object-fit: cover; }
+        .card h3 { margin: 20px 20px 10px; font-size: 24px; color: var(--primary); }
+        .card p { margin: 0 20px 20px; color: #666; }
+        .card .price { margin: 0 20px; color: var(--gold); font-size: 20px; font-weight: bold; }
+    </style>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Splink",
+      "url": "https://splinkapp.com.br/",
+      "logo": "https://splinkapp.com.br/logo-splink-v2.png",
+      "image": "https://splinkapp.com.br/automacao-whatsapp-splink.png",
+      "description": "Ecossistema completo de automação de WhatsApp, CRM e Agentes de IA.",
+      "sameAs": [
+        "https://www.instagram.com/splink.app/"
+      ]
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">LUMIÈRE<span>.</span></div>
+        <div class="nav-links">
+            <a href="#">Imóveis</a>
+            <a href="#">Lançamentos</a>
+            <a href="#">Sobre</a>
+            <a href="#">Contato</a>
+        </div>
+    </header>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>A Arte de Viver Bem</h1>
+            <p>Descubra as propriedades mais exclusivas do país.</p>
+            <a href="#" class="btn-gold">Explorar Imóveis</a>
+        </div>
+    </section>
+    <section class="properties">
+        <h2>Destaques Exclusivos</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Casa">
+                <h3>Mansão Skyline</h3>
+                <p>Jardim Europa, São Paulo</p>
+                <div class="price">R$ 15.000.000</div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Casa">
+                <h3>Villa Toscana</h3>
+                <p>Jardins, São Paulo</p>
+                <div class="price">R$ 22.500.000</div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Casa">
+                <h3>Cobertura Triplex</h3>
+                <p>Ipanema, Rio de Janeiro</p>
+                <div class="price">R$ 38.000.000</div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

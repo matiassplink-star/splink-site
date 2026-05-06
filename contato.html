@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Negócio - Splink</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #0a0a0b 0%, #050506 100%);
+        }
+        .form-container {
+            width: 100%;
+            max-width: 600px;
+            padding: 40px;
+            position: relative;
+        }
+        .step {
+            display: none;
+            flex-direction: column;
+        }
+        .step.active {
+            display: flex;
+            animation: fadeIn 0.5s ease;
+        }
+        .step-label {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: monospace;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .step-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.2;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+        }
+        input, select {
+            width: 100%;
+            background: rgba(0, 212, 255, 0.03);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            color: var(--accent);
+            font-size: 24px;
+            padding: 16px 20px;
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: monospace;
+            border-radius: 4px;
+        }
+        input:focus, select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2) inset;
+            background: rgba(0, 212, 255, 0.08);
+        }
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.2);
+        }
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: var(--accent-gradient);
+            transition: width 0.3s;
+        }
+        .nav-buttons {
+            margin-top: 40px;
+            display: flex;
+            gap: 16px;
+        }
+        .back-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .success-message {
+            text-align: center;
+        }
+    </style>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Splink",
+      "url": "https://splinkapp.com.br/",
+      "logo": "https://splinkapp.com.br/logo-splink-v2.png",
+      "image": "https://splinkapp.com.br/automacao-whatsapp-splink.png",
+      "description": "Ecossistema completo de automação de WhatsApp, CRM e Agentes de IA.",
+      "sameAs": [
+        "https://www.instagram.com/splink.app/"
+      ]
+    }
+    </script>
+</head>
+<body>
+    <div class="progress-bar" id="progress"></div>
+    <div class="glow-bg" style="top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.5;"></div>
+
+    <div class="form-container">
+        <form id="quizForm">
+            <!-- Passo 1: Nome -->
+            <div class="step active" id="step1">
+                <div class="step-label">PASSO 01/05</div>
+                <div class="step-title">Para começar, qual é o seu nome?</div>
+                <input type="text" id="name" placeholder="Digite seu nome completo" required>
+                <div class="nav-buttons">
+                    <button type="button" class="btn btn-primary" onclick="nextStep(2)">Continuar</button>
+                </div>
+            </div>
+
+            <!-- Passo 2: Email -->
+            <div class="step" id="step2">
+                <div class="step-label">PASSO 02/05</div>
+                <div class="step-title">Qual é o seu melhor e-mail?</div>
+                <input type="email" id="email" placeholder="nome@empresa.com" required>
+                <div class="nav-buttons">
+                    <button type="button" class="btn btn-primary" onclick="nextStep(3)">Próximo</button>
+                    <button type="button" class="back-btn" onclick="prevStep(1)">voltar</button>
+                </div>
+            </div>
+
+            <!-- Passo 3: Site -->
+            <div class="step" id="step3">
+                <div class="step-label">PASSO 03/05</div>
+                <div class="step-title">Qual o site da sua empresa?</div>
+                <input type="url" id="site" placeholder="https://seu-site.com" required>
+                <div class="nav-buttons">
+                    <button type="button" class="btn btn-primary" onclick="nextStep(4)">Próximo</button>
+                    <button type="button" class="back-btn" onclick="prevStep(2)">voltar</button>
+                </div>
+            </div>
+
+            <!-- Passo 4: Instagram -->
+            <div class="step" id="step4">
+                <div class="step-label">PASSO 04/05</div>
+                <div class="step-title">E o perfil do Instagram?</div>
+                <input type="text" id="instagram" placeholder="@sua_empresa" required>
+                <div class="nav-buttons">
+                    <button type="button" class="btn btn-primary" onclick="nextStep(5)">Próximo</button>
+                    <button type="button" class="back-btn" onclick="prevStep(3)">voltar</button>
+                </div>
+            </div>
+
+            <!-- Passo 5: Faturamento -->
+            <div class="step" id="step5">
+                <div class="step-label">PASSO 05/05</div>
+                <div class="step-title">Qual a faixa de faturamento mensal da empresa?</div>
+                <input type="text" id="revenue" placeholder="Ex: R$ 50.000 ou 100k+" required>
+                <div class="nav-buttons">
+                    <button type="submit" class="btn btn-primary">Enviar Análise</button>
+                    <button type="button" class="back-btn" onclick="prevStep(4)">voltar</button>
+                </div>
+            </div>
+
+            <!-- Sucesso -->
+            <div class="step success-message" id="stepSuccess">
+                <i data-lucide="shield-check" style="width: 80px; height: 80px; color: var(--accent); margin-bottom: 24px; filter: drop-shadow(0 0 10px rgba(0,212,255,0.5));"></i>
+                <div class="step-title" style="font-family: monospace;">PROTOCOLO ENVIADO</div>
+                <p style="color: rgba(255,255,255,0.7); font-family: monospace; letter-spacing: 1px;">Nossos agentes estão processando seus dados criptografados. Faremos contato em breve.</p>
+                <a href="index.html" class="btn btn-secondary" style="margin-top: 20px; font-family: monospace;">ENCERRAR CONEXÃO</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        let currentStep = 1;
+        const totalSteps = 5;
+
+        function updateProgress() {
+            const progress = (currentStep / totalSteps) * 100;
+            document.getElementById('progress').style.width = progress + '%';
+        }
+
+        function nextStep(step) {
+            const currentInput = document.querySelector(`#step${currentStep} input, #step${currentStep} select`);
+            if (currentInput && !currentInput.checkValidity()) {
+                currentInput.reportValidity();
+                return;
+            }
+            
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            document.getElementById(`step${step}`).classList.add('active');
+            currentStep = step;
+            updateProgress();
+        }
+
+        function prevStep(step) {
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            document.getElementById(`step${step}`).classList.add('active');
+            currentStep = step;
+            updateProgress();
+        }
+
+        document.getElementById('quizForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            document.getElementById('stepSuccess').classList.add('active');
+            document.getElementById('progress').style.width = '100%';
+            
+            // Aqui integraria com a API de disparo ou CRM
+            console.log("Dados enviados para Splink");
+        });
+
+        // Enter key to next step
+        document.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && currentStep < totalSteps) {
+                e.preventDefault();
+                nextStep(currentStep + 1);
+            }
+        });
+    </script>
+    <div class="cookie-banner">
+        <div class="cookie-content">
+            Utilizamos cookies para melhorar sua experiência. Ao continuar, você concorda com nossa <a href="#" style="color: var(--accent);">Política de Privacidade</a>.
+        </div>
+        <button class="btn btn-primary" id="acceptCookies" style="white-space: nowrap;">Aceitar</button>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

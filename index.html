@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Splink - Automação de WhatsApp, IA e Soluções Digitais</title>
+    <meta name="description" content="A Splink oferece as melhores soluções em disparo de WhatsApp, agentes de IA, CRM e marketing digital. Transforme seu negócio com tecnologia de ponta.">
+    <link rel="canonical" href="https://splinkapp.com.br/">
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://splinkapp.com.br/">
+    <meta property="og:title" content="Splink - Automação de WhatsApp, IA e Soluções Digitais">
+    <meta property="og:description" content="A Splink oferece as melhores soluções em disparo de WhatsApp, agentes de IA, CRM e marketing digital. Transforme seu negócio com tecnologia de ponta.">
+    <meta property="og:image" content="https://splinkapp.com.br/automacao-whatsapp-splink.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://splinkapp.com.br/">
+    <meta property="twitter:title" content="Splink - Automação de WhatsApp, IA e Soluções Digitais">
+    <meta property="twitter:description" content="A Splink oferece as melhores soluções em disparo de WhatsApp, agentes de IA, CRM e marketing digital. Transforme seu negócio com tecnologia de ponta.">
+    <meta property="twitter:image" content="https://splinkapp.com.br/automacao-whatsapp-splink.png">
+    
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Splink",
+      "url": "https://splinkapp.com.br/",
+      "logo": "https://splinkapp.com.br/logo-splink-v2.png",
+      "image": "https://splinkapp.com.br/automacao-whatsapp-splink.png",
+      "description": "Ecossistema completo de automação de WhatsApp, CRM e Agentes de IA.",
+      "sameAs": [
+        "https://www.instagram.com/splink.app/"
+      ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="index.css">
+    <style>
+        .hero {
+            position: relative;
+            padding: 120px 0 60px;
+            text-align: center;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 122, 255, 0.1) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: -1;
+            animation: pulseGlow 10s infinite alternate;
+        }
+        @keyframes pulseGlow {
+            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.3; }
+            100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.7; }
+        }
+        .stat-item {
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+        .stat-item:hover {
+            transform: translateY(-5px);
+            opacity: 1 !important;
+        }
+        .stat-item:hover i {
+            transform: scale(1.2);
+        }
+        .hero-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120%;
+            height: 120%;
+            object-fit: cover;
+            transform: translate(-50%, -50%) scale(1.1);
+            opacity: 0.4;
+            z-index: -2;
+            filter: brightness(0.7);
+            animation: backgroundFloat 20s ease-in-out infinite alternate;
+        }
+        @keyframes backgroundFloat {
+            0% { transform: translate(-52%, -48%) scale(1.1) rotate(0deg); }
+            50% { transform: translate(-48%, -52%) scale(1.15) rotate(1deg); }
+            100% { transform: translate(-50%, -50%) scale(1.1) rotate(-1deg); }
+        }
+        
+        /* Audio Toggle */
+        .audio-toggle {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 2000;
+            background: rgba(13, 13, 13, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .audio-toggle:hover {
+            transform: scale(1.1);
+            border-color: var(--accent);
+        }
+        .audio-toggle.playing {
+            box-shadow: 0 0 15px rgba(0, 122, 255, 0.4);
+        }
+        .services-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 60px;
+        }
+        .service-card-link {
+            width: calc(33.333% - 22px);
+            min-width: 320px;
+            text-decoration: none;
+        }
+        .service-card {
+            padding: 40px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            background: var(--bg-card-hover);
+        }
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+        .service-card h3 {
+            margin-bottom: 16px;
+            font-size: 24px;
+            color: white;
+        }
+        .service-card p {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            color: var(--text-secondary);
+            flex-grow: 1;
+        }
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(0, 122, 255, 0.2);
+            color: var(--accent);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        .coming-soon {
+            background: rgba(255, 165, 0, 0.2);
+            color: #ffa500;
+        }
+        section {
+            padding: 100px 0;
+        }
+        .about-section {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+        .about-content {
+            flex: 1;
+            min-width: 300px;
+        }
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 60px 0;
+            text-align: center;
+        }
+        .footer-info {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        @media (max-width: 1100px) {
+            .service-card-link { width: calc(50% - 16px); }
+        }
+        @media (max-width: 700px) {
+            .service-card-link { width: 100%; }
+            .hero { padding: 80px 0 40px; }
+        }
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+        @keyframes pulse-cyan {
+            0% { box-shadow: 0 0 5px rgba(0, 212, 255, 0.2); }
+            50% { box-shadow: 0 0 15px rgba(0, 212, 255, 0.5); }
+            100% { box-shadow: 0 0 5px rgba(0, 212, 255, 0.2); }
+        }
+        .hacker-block:hover {
+            background: rgba(0, 212, 255, 0.08) !important;
+            transform: translateY(-5px);
+            border-left-color: #fff !important;
+        }
+        .hacker-block {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+            position: relative;
+        }
+        .hacker-block::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: rgba(0, 212, 255, 0.2);
+            animation: scanline 2s linear infinite;
+            pointer-events: none;
+        }
+        /* Glitch Effect */
+        @keyframes glitch {
+            0% { text-shadow: 2px 0 #00d4ff, -2px 0 #fff; transform: translate(0); }
+            20% { text-shadow: -2px 0 #00d4ff, 2px 0 #fff; transform: translate(-2px, 2px); }
+            40% { text-shadow: 2px 0 #00d4ff, -2px 0 #fff; transform: translate(2px, -2px); }
+            60% { text-shadow: -2px 0 #00d4ff, 2px 0 #fff; transform: translate(-2px, -2px); }
+            80% { text-shadow: 2px 0 #00d4ff, -2px 0 #fff; transform: translate(2px, 2px); }
+            100% { text-shadow: -2px 0 #00d4ff, 2px 0 #fff; transform: translate(0); }
+        }
+        .glitch-text:hover {
+            animation: glitch 0.3s cubic-bezier(.25,.46,.45,.94) both infinite;
+        }
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1em;
+            background: var(--accent);
+            margin-left: 5px;
+            animation: blink 0.8s infinite;
+            vertical-align: middle;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        @keyframes scanline-horizontal {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrixCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.4; pointer-events: none;"></canvas>
+    <div class="glow-bg" style="top: -200px; left: -200px; background: radial-gradient(circle, rgba(0, 212, 255, 0.05) 0%, transparent 70%); z-index: -2;"></div>
+    
+    <nav class="navbar-landing">
+        <a href="index.html" class="splink-logo logo-large">
+            <div class="logo-symbol">
+                <i data-lucide="zap"></i>
+            </div>
+            <div class="logo-text">SPLINK<span>.</span></div>
+        </a>
+    </nav>
+
+    <section class="hero" style="text-align: left; padding: 140px 0 80px; background: transparent;">
+        <div class="container">
+            <!-- 3 Status Blocks on Top -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 50px;">
+                <div class="service-card hacker-block" style="padding: 20px; border-left: 3px solid var(--accent); background: rgba(255,255,255,0.02);">
+                    <div style="font-size: 11px; opacity: 0.5; margin-bottom: 8px; color: var(--accent); letter-spacing: 2px;">[ MONITORAMENTO ]</div>
+                    <div style="font-size: 18px; font-weight: 700; color: white;">IA SDR ATIVA</div>
+                    <div style="font-size: 12px; color: rgba(255,255,255,0.5); font-family: monospace;">STATUS: <span class="scanning-text">RUNNING...</span></div>
+                </div>
+                <div class="service-card hacker-block" style="padding: 20px; border-left: 3px solid var(--accent); background: rgba(255,255,255,0.02);">
+                    <div style="font-size: 11px; opacity: 0.5; margin-bottom: 8px; color: var(--accent); letter-spacing: 2px;">[ SEGURANÇA ]</div>
+                    <div style="font-size: 18px; font-weight: 700; color: white;">BYPASS ANTI-BAN</div>
+                    <div style="font-size: 12px; color: rgba(255,255,255,0.5); font-family: monospace;">PROTOCOL: <span class="scanning-text">ENCRYPTED</span></div>
+                </div>
+                <div class="service-card hacker-block" style="padding: 20px; border-left: 3px solid var(--accent); background: rgba(255,255,255,0.02);">
+                    <div style="font-size: 11px; opacity: 0.5; margin-bottom: 8px; color: var(--accent); letter-spacing: 2px;">[ ESCALA ]</div>
+                    <div style="font-size: 18px; font-weight: 700; color: white;">MULTICORE SYNC</div>
+                    <div style="font-size: 12px; color: rgba(255,255,255,0.5); font-family: monospace;">FLOW: <span class="scanning-text">10.421 msg/h</span></div>
+                </div>
+            </div>
+
+            <!-- Main Block Below -->
+            <div class="animate-up" style="max-width: 900px;">
+                <h1 id="typewriterHeadline" class="glitch-text" style="font-family: 'Inter', sans-serif; letter-spacing: -1px; color: white; font-size: clamp(40px, 8vw, 72px); margin-bottom: 24px; line-height: 1.1; min-height: 1.2em; cursor: default;">Hacking A.I for Business Performance</h1>
+                <p style="max-width: 600px; margin-bottom: 40px; font-family: 'Inter', sans-serif; color: rgba(255, 255, 255, 0.6); font-size: 18px; line-height: 1.6;">Gere mais receita com protocolos de automação inteligente e extração massiva de dados.</p>
+                <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                    <a href="questionario.html" class="btn btn-primary" style="padding: 18px 40px; font-size: 16px;">INICIAR PROTOCOLO</a>
+                    <a href="#servicos" class="btn btn-secondary" style="padding: 18px 40px; font-size: 16px;">Ver Módulos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicos" class="container">
+        <div style="text-align: center;">
+            <div class="tag">NOSSO ECOSSISTEMA</div>
+            <h2>Soluções Completas para sua Empresa</h2>
+        </div>
+        
+        <div class="services-grid">
+            <!-- ZapLink -->
+            <a href="zaplink.html" class="service-card-link">
+                <div class="service-card glass">
+                    <i data-lucide="message-square" class="service-icon"></i>
+                    <div class="tag">SOFTWARE</div>
+                    <h3>Sistema ZapLink</h3>
+                    <p>Solução definitiva de disparo em massa via WhatsApp. Alta escala com segurança e IA integrada.</p>
+                    <div class="learn-more">Saiba Mais <i data-lucide="chevron-right"></i></div>
+                </div>
+            </a>
+
+            <!-- OLX Extractor -->
+            <a href="olx-extractor.html" class="service-card-link">
+                <div class="service-card glass">
+                    <i data-lucide="database" class="service-icon"></i>
+                    <div class="tag">SOFTWARE</div>
+                    <h3>OLX Extractor</h3>
+                    <p>Extraia leads infinitos da OLX de forma automatizada para imóveis, veículos e recrutamento.</p>
+                    <div class="learn-more">Saiba Mais <i data-lucide="chevron-right"></i></div>
+                </div>
+            </a>
+
+            <!-- IA Agents -->
+            <a href="agentes-ia.html" class="service-card-link">
+                <div class="service-card glass">
+                    <i data-lucide="bot" class="service-icon"></i>
+                    <div class="tag">IA SDR</div>
+                    <h3>Agentes de IA SDR</h3>
+                    <p>Robôs treinados para WhatsApp e Instagram que qualificam e vendem para você 24/7.</p>
+                    <div class="learn-more">Saiba Mais <i data-lucide="chevron-right"></i></div>
+                </div>
+            </a>
+
+            <!-- CRM -->
+            <a href="crm.html" class="service-card-link">
+                <div class="service-card glass">
+                    <i data-lucide="users" class="service-icon"></i>
+                    <h3>CRM Integrado</h3>
+                    <p>Gestão completa do seu funil de vendas com automações poderosas e visão clara de ROI.</p>
+                    <div class="learn-more">Saiba Mais <i data-lucide="chevron-right"></i></div>
+                </div>
+            </a>
+
+            <!-- Geração de Leads -->
+            <a href="geracao-leads.html" class="service-card-link">
+                <div class="service-card glass">
+                    <i data-lucide="target" class="service-icon"></i>
+                    <h3>Geração de Leads</h3>
+                    <p>Prospecção ativa para encher o seu funil com clientes qualificados e prontos para comprar.</p>
+                    <div class="learn-more">Saiba Mais <i data-lucide="chevron-right"></i></div>
+                </div>
+            </a>
+
+            <!-- Google Extrator -->
+            <a href="extrator-google.html" class="service-card-link">
+                <div class="service-card glass">
+                    <i data-lucide="search" class="service-icon"></i>
+                    <div class="tag">INTELIGÊNCIA</div>
+                    <h3>Extrator Google</h3>
+                    <p>Inteligência competitiva para extração de dados estratégicos do Google Maps e sites.</p>
+                    <div class="learn-more">Saiba Mais <i data-lucide="chevron-right"></i></div>
+                </div>
+            </a>
+
+            <!-- Venda de Sites -->
+            <a href="criacao-sites.html" class="service-card-link">
+                <div class="service-card glass">
+                    <i data-lucide="layout" class="service-icon"></i>
+                    <h3>Criação de Sites</h3>
+                    <p>Sites institucionais e corporativos com design premium e foco total em conversão.</p>
+                    <div class="learn-more">Saiba Mais <i data-lucide="chevron-right"></i></div>
+                </div>
+            </a>
+
+            <!-- Landing Pages -->
+            <a href="landing-pages.html" class="service-card-link">
+                <div class="service-card glass">
+                    <i data-lucide="mouse-pointer-click" class="service-icon"></i>
+                    <h3>Landing Pages</h3>
+                    <p>Páginas de alta conversão desenhadas para transformar visitantes em clientes em segundos.</p>
+                    <div class="learn-more">Saiba Mais <i data-lucide="chevron-right"></i></div>
+                </div>
+            </a>
+
+            <!-- Social Media -->
+            <a href="social-media.html" class="service-card-link">
+                <div class="service-card glass">
+                    <i data-lucide="share-2" class="service-icon"></i>
+                    <h3>Social Media</h3>
+                    <p>Gestão profissional de redes sociais para elevar a autoridade e o desejo pela sua marca.</p>
+                    <div class="learn-more">Saiba Mais <i data-lucide="chevron-right"></i></div>
+                </div>
+            </a>
+
+            <!-- Tráfego Pago -->
+            <a href="trafego-pago.html" class="service-card-link">
+                <div class="service-card glass">
+                    <i data-lucide="trending-up" class="service-icon"></i>
+                    <h3>Tráfego Pago</h3>
+                    <p>Gestão estratégica de anúncios no Google e Meta para escalar suas vendas com ROI positivo.</p>
+                    <div class="learn-more">Saiba Mais <i data-lucide="chevron-right"></i></div>
+                </div>
+            </a>
+
+            <!-- Disparo via API -->
+            <a href="disparo-api.html" class="service-card-link">
+                <div class="service-card glass">
+                    <i data-lucide="code" class="service-icon"></i>
+                    <div class="tag">API INTEGRADA</div>
+                    <h3>Disparo via API</h3>
+                    <p>Integre seu sistema ao WhatsApp via API Oficial ou Não-Oficial com alta performance e escala.</p>
+                    <div class="learn-more">Saiba Mais <i data-lucide="chevron-right"></i></div>
+                </div>
+            </a>
+
+
+            <!-- Consultoria IA -->
+            <a href="questionario.html?s=consultoria" class="service-card-link">
+                <div class="service-card glass">
+                    <i data-lucide="cpu" class="service-icon"></i>
+                    <h3>Consultoria IA</h3>
+                    <p>Implementação sob medida de fluxos de Inteligência Artificial para otimizar processos internos.</p>
+                    <div class="learn-more">Consultar <i data-lucide="chevron-right"></i></div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Nossa Metodologia -->
+    <section style="background: rgba(0, 122, 255, 0.02);">
+        <div class="container">
+            <div style="text-align: center;">
+                <div class="tag">MÉTODO SPLINK</div>
+                <h2>Como Transformamos seu Negócio</h2>
+                <p style="max-width: 600px; margin: 0 auto 60px;">Um plano de ação detalhado para garantir previsibilidade e lucro em cada etapa da nossa parceria.</p>
+            </div>
+
+            <div class="roadmap-grid">
+                <!-- Passo 1 -->
+                <div class="roadmap-step animate-up">
+                    <span class="tag-interactive">Fase 01</span>
+                    <div class="step-number">1</div>
+                    <h4>Diagnóstico & Insight</h4>
+                    <p>Mergulhamos nos seus números e processos para encontrar oportunidades ocultas.</p>
+                    <ul class="roadmap-details">
+                        <li>Análise de maturidade digital</li>
+                        <li>Identificação de gargalos</li>
+                        <li>Definição de KPIs de sucesso</li>
+                        <li>Relatório de oportunidades</li>
+                    </ul>
+                </div>
+
+                <!-- Passo 2 -->
+                <div class="roadmap-step animate-up" style="animation-delay: 0.1s;">
+                    <span class="tag-interactive">Fase 02</span>
+                    <div class="step-number">2</div>
+                    <h4>Estratégia & Criação</h4>
+                    <p>Desenhamos a solução personalizada que seu negócio precisa para escalar.</p>
+                    <ul class="roadmap-details">
+                        <li>Planejamento estratégico 360º</li>
+                        <li>Criação de fluxos de automação</li>
+                        <li>Design de ativos de conversão</li>
+                        <li>Alinhamento de oferta e público</li>
+                    </ul>
+                </div>
+
+                <!-- Passo 3 -->
+                <div class="roadmap-step animate-up" style="animation-delay: 0.2s;">
+                    <span class="tag-interactive">Fase 03</span>
+                    <div class="step-number">3</div>
+                    <h4>Execução & Tech</h4>
+                    <p>Implementamos toda a estrutura técnica e criativa com precisão de elite.</p>
+                    <ul class="roadmap-details">
+                        <li>Setup de ferramentas e pixels</li>
+                        <li>Launch de campanhas e bots</li>
+                        <li>Desenvolvimento de páginas</li>
+                        <li>Treinamento de time comercial</li>
+                    </ul>
+                </div>
+
+                <!-- Passo 4 -->
+                <div class="roadmap-step animate-up" style="animation-delay: 0.3s;">
+                    <span class="tag-interactive">Fase 04</span>
+                    <div class="step-number">4</div>
+                    <h4>Otimização & Escala</h4>
+                    <p>Monitoramos e ajustamos em tempo real para maximizar seu lucro e escala.</p>
+                    <ul class="roadmap-details">
+                        <li>Análise diária de performance</li>
+                        <li>Ajustes de lances e criativos</li>
+                        <li>Escala gradual e segura</li>
+                        <li>Reuniões mensais de progresso</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 40px; font-size: 14px; opacity: 0.6;">* Passe o mouse nos cards para ver detalhes técnicos.</p>
+        </div>
+    </section>
+
+    <section id="sobre" style="background: rgba(255,255,255,0.02); position: relative; overflow: hidden;">
+        <div class="glow-bg" style="bottom: -100px; right: -100px; opacity: 0.2;"></div>
+        <div class="container about-section">
+            <div class="about-content">
+                <div class="tag">A VISÃO POR TRÁS DA MARCA</div>
+                <h2 style="font-size: clamp(32px, 4vw, 56px); margin-bottom: 32px;">Onde a <span style="color: var(--accent);">Tecnologia</span> encontra a <span style="color: var(--accent);">Estratégia</span></h2>
+                
+                <p style="font-size: 20px; color: white; font-weight: 500; margin-bottom: 24px; line-height: 1.4;">
+                    "Em 2019, vi empresas perdendo vendas no atendimento manual. A Splink não nasceu para ser apenas um software, mas a estrutura para quem busca escala real."
+                </p>
+                
+                <p style="margin-bottom: 20px;">
+                    Fundada por <strong>Marco Matias</strong>, a trajetória da Splink começou com um desafio simples, mas profundo: como eliminar a fricção entre uma empresa e seu cliente? O que começou como uma ferramenta pioneira de automação para WhatsApp, evoluiu para uma arquitetura completa de inteligência de negócios.
+                </p>
+
+                <p style="margin-bottom: 20px;">
+                    Marco não construiu apenas códigos; ele desenhou processos. Cada funcionalidade do ecossistema Splink reflete sua obsessão por **ROI, performance e simplicidade**. Ao longo de 5 anos, saímos dos disparos em massa para a era da Inteligência Artificial Generativa, onde nossos Agentes SDR trabalham enquanto o mundo dorme.
+                </p>
+
+                <p style="margin-bottom: 40px;">
+                    Hoje, a Splink é o ponto de encontro entre o tráfego que atrai, a IA que qualifica e o CRM que organiza. Uma visão que começou há meia década e que hoje impulsiona milhares de operações digitais ao redor do Brasil.
+                </p>
+
+                <div style="display: flex; gap: 48px; padding-top: 20px; border-top: 1px solid var(--border-color);">
+                    <div>
+                        <div style="font-size: 36px; font-weight: 800; color: var(--accent); line-height: 1;">2019</div>
+                        <div style="font-size: 13px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; margin-top: 8px;">O Início da Revolução</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 36px; font-weight: 800; color: var(--accent); line-height: 1;">10k+</div>
+                        <div style="font-size: 13px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; margin-top: 8px;">Negócios Impactados</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 36px; font-weight: 800; color: var(--accent); line-height: 1;">5.0</div>
+                        <div style="font-size: 13px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; margin-top: 8px;">Anos de Evolução</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="flex: 1; min-width: 320px; position: relative;">
+                <div class="glass interactive-card" style="padding: 10px; border-radius: 32px; box-shadow: 0 40px 80px rgba(0,0,0,0.5); transition: transform 0.4s ease, box-shadow 0.4s ease; cursor: pointer;">
+                    <img src="Criar_um_foto_profssional_porfavor_202605051827 (1).jpeg" alt="Marco Matias - O Visionário por trás da Splink" style="width: 100%; height: auto; display: block; border-radius: 22px;">
+                </div>
+                <!-- Floating Badge -->
+                <div class="glass" style="position: absolute; bottom: -20px; left: -20px; padding: 20px; border-radius: 20px; border-left: 4px solid var(--accent);">
+                    <div style="font-size: 14px; font-weight: 700; color: white;">Marco Matias</div>
+                    <div style="font-size: 12px; color: var(--text-secondary);">CEO & Fundador</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Depoimentos e Resultados -->
+    <section class="container" style="padding: 100px 0;">
+        <div style="text-align: center; margin-bottom: 60px;">
+            <div class="tag">CASOS DE SUCESSO</div>
+            <h2 style="margin-bottom: 16px;">O que dizem nossos parceiros</h2>
+            <p style="color: var(--text-secondary);">Resultados reais de quem confiou na tecnologia da Splink para escalar.</p>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px;">
+            <!-- Depoimento 1 -->
+            <div class="glass animate-up interactive-card" style="padding: 40px; border-radius: 32px; position: relative; transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease; cursor: pointer; border: 1px solid rgba(255,255,255,0.1);">
+                <div style="position: absolute; top: -20px; right: 40px; width: 40px; height: 40px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 10px 20px rgba(0, 122, 255, 0.4);">
+                    <i data-lucide="quote"></i>
+                </div>
+                <p style="font-style: italic; margin-bottom: 30px; font-size: 16px; line-height: 1.6; color: var(--text-secondary);">"A automação da Splink mudou o jogo para nossa imobiliária. Antes perdíamos 40% dos leads por demora no atendimento, agora a IA qualifica tudo em segundos."</p>
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <div style="width: 48px; height: 48px; border-radius: 50%; background: #333; overflow: hidden; border: 2px solid var(--accent);">
+                        <img src="https://ui-avatars.com/api/?name=Bruno+Cavalcante&background=007aff&color=fff" alt="BC Imóveis" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div>
+                        <div style="font-weight: 700; color: white;">Bruno Cavalcante</div>
+                        <div style="font-size: 12px; color: var(--accent);">Proprietário, BC Imóveis</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Depoimento 2 -->
+            <div class="glass animate-up interactive-card" style="padding: 40px; border-radius: 32px; position: relative; animation-delay: 0.1s; transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease; cursor: pointer; border: 1px solid rgba(255,255,255,0.1);">
+                <div style="position: absolute; top: -20px; right: 40px; width: 40px; height: 40px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 10px 20px rgba(0, 122, 255, 0.4);">
+                    <i data-lucide="quote"></i>
+                </div>
+                <p style="font-style: italic; margin-bottom: 30px; font-size: 16px; line-height: 1.6; color: var(--text-secondary);">"O ZapLink é a ferramenta mais estável que já usamos. Escalar o disparo em massa sem perder contas era nosso maior desafio, resolvido em uma semana com a Splink."</p>
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <div style="width: 48px; height: 48px; border-radius: 50%; background: #333; overflow: hidden; border: 2px solid var(--accent);">
+                        <img src="https://ui-avatars.com/api/?name=Ricardo+Moraes&background=007aff&color=fff" alt="Moraes Marketing" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div>
+                        <div style="font-weight: 700; color: white;">Ricardo Moraes</div>
+                        <div style="font-size: 12px; color: var(--accent);">Proprietário, Moraes Marketing</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Depoimento 3 -->
+            <div class="glass animate-up interactive-card" style="padding: 40px; border-radius: 32px; position: relative; animation-delay: 0.2s; transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease; cursor: pointer; border: 1px solid rgba(255,255,255,0.1);">
+                <div style="position: absolute; top: -20px; right: 40px; width: 40px; height: 40px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 10px 20px rgba(0, 122, 255, 0.4);">
+                    <i data-lucide="quote"></i>
+                </div>
+                <p style="font-style: italic; margin-bottom: 30px; font-size: 16px; line-height: 1.6; color: var(--text-secondary);">"O CRM integrado e as landing pages de alta conversão triplicaram nosso faturamento trimestral. A equipe de suporte é excepcional e entende de escala."</p>
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <div style="width: 48px; height: 48px; border-radius: 50%; background: #333; overflow: hidden; border: 2px solid var(--accent);">
+                        <img src="https://ui-avatars.com/api/?name=Carla+Dias&background=007aff&color=fff" alt="E-commerce Fashion" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div>
+                        <div style="font-weight: 700; color: white;">Carla Dias</div>
+                        <div style="font-size: 12px; color: var(--accent);">Proprietária, Fashion Luxo</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stack Tecnológica e Parceiros -->
+    <section style="background: rgba(255, 255, 255, 0.01); padding: 80px 0; border-top: 1px solid rgba(255,255,255,0.05);">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 48px;">
+                <div class="tag">NOSSA STACK</div>
+                <h3 style="font-size: 20px; color: var(--text-secondary);">Tecnologias que impulsionam nossas soluções</h3>
+            </div>
+            
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; align-items: center; opacity: 0.6;">
+                <div style="display: flex; align-items: center; gap: 10px; font-weight: 700; color: white; font-size: 14px;">
+                    <i data-lucide="chrome" style="color: var(--accent); width: 20px;"></i> Google
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px; font-weight: 700; color: white; font-size: 14px;">
+                    <i data-lucide="bot" style="color: var(--accent); width: 20px;"></i> ChatGPT
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px; font-weight: 700; color: white; font-size: 14px;">
+                    <i data-lucide="server" style="color: var(--accent); width: 20px;"></i> Hostinger
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px; font-weight: 700; color: white; font-size: 14px;">
+                    <i data-lucide="credit-card" style="color: var(--accent); width: 20px;"></i> Mercado Pago
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px; font-weight: 700; color: white; font-size: 14px;">
+                    <i data-lucide="cloud" style="color: var(--accent); width: 20px;"></i> Cloud Engine
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px; font-weight: 700; color: white; font-size: 14px;">
+                    <i data-lucide="workflow" style="color: var(--accent); width: 20px;"></i> n8n / Make
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px; font-weight: 700; color: white; font-size: 14px;">
+                    <i data-lucide="code-2" style="color: var(--accent); width: 20px;"></i> Node.js / Python
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="container" style="text-align: center;">
+        <h2>Pronto para escalar?</h2>
+        <p>Responda nosso questionário interativo e receba uma análise personalizada da nossa equipe.</p>
+        <a href="contato.html" class="btn btn-primary" style="font-size: 20px; padding: 18px 40px;">Iniciar Questionário</a>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div style="display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 600px; margin: 0 auto;">
+                <a href="index.html" class="splink-logo logo-large" style="margin-bottom: 24px;">
+                    <div class="logo-symbol">
+                        <i data-lucide="zap"></i>
+                    </div>
+                    <div class="logo-text">SPLINK<span>.</span></div>
+                </a>
+                <p style="font-size: 14px; line-height: 1.6; margin-bottom: 32px;">Transformando negócios através de automação inteligente e estratégias digitais de alta performance desde 2019.</p>
+                <div class="footer-social" style="margin-bottom: 40px;">
+                    <a href="https://www.instagram.com/splink.app/" target="_blank">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </a>
+                    <a href="https://wa.me/5500000000000" target="_blank"><i data-lucide="message-circle"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>&copy; 2019-2026 Splink Soluções Digitais. CNPJ: 32.657.200/0001-08</div>
+                <div class="footer-legal-links">
+                    <a href="status.html">Status</a>
+                    <a href="privacidade.html">Privacidade</a>
+                    <a href="termos.html">Termos</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="cookie-banner">
+        <div class="cookie-content">
+            Utilizamos cookies para melhorar sua experiência. Ao continuar, você concorda com nossa <a href="#" style="color: var(--accent);">Política de Privacidade</a>.
+        </div>
+        <button class="btn btn-primary" id="acceptCookies" style="white-space: nowrap;">Aceitar</button>
+    </div>
+
+    <script>
+        // Typewriter Effect
+        const headlineElement = document.getElementById('typewriterHeadline');
+        const textToType = "Hacking A.I for Business Performance";
+        let charIndex = 0;
+
+        function typeHeadline() {
+            if (charIndex < textToType.length) {
+                // Remove cursor temporarily to add text
+                const cursor = headlineElement.querySelector('.cursor');
+                if (cursor) cursor.remove();
+
+                if (charIndex < 15) {
+                    headlineElement.innerHTML += textToType.charAt(charIndex);
+                } else if (charIndex === 15) {
+                    headlineElement.innerHTML += '<br><span id="businessSpan" style="background: linear-gradient(to right, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></span>';
+                    document.getElementById('businessSpan').innerHTML += textToType.charAt(charIndex);
+                } else {
+                    document.getElementById('businessSpan').innerHTML += textToType.charAt(charIndex);
+                }
+                
+                // Re-add cursor
+                headlineElement.innerHTML += '<span class="cursor"></span>';
+                
+                charIndex++;
+                setTimeout(typeHeadline, 40);
+            }
+        }
+
+        // Garante que o DOM está pronto e inicia
+        if (headlineElement) {
+            headlineElement.innerHTML = "";
+            setTimeout(typeHeadline, 500);
+        }
+    </script>
+    <script src="main.js"></script>
+</body>
+</html>

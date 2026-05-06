@@ -1,0 +1,6 @@
+node_modules/
+*.exe
+temp_seo.txt
+apply_seo.py
+.env
+.DS_Store

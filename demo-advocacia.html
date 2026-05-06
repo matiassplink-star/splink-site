@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borges & Albuquerque | Advogados Associados</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e1b4b;
+            --gold: #b45309;
+            --light: #f3f4f6;
+            --text: #374151;
+        }
+        body {
+            margin: 0;
+            font-family: 'Open Sans', sans-serif;
+            background: #fff;
+            color: var(--text);
+        }
+        h1, h2, h3, .logo { font-family: 'Libre Baskerville', serif; }
+        header {
+            background: var(--primary);
+            color: #fff;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { font-size: 20px; letter-spacing: 1px; }
+        .logo span { color: var(--gold); }
+        .nav-links a { color: #fff; text-decoration: none; margin-left: 30px; font-size: 14px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--gold); }
+        .hero {
+            background: linear-gradient(to right, rgba(30, 27, 75, 0.9), rgba(30, 27, 75, 0.7)), url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            padding: 120px 50px;
+            color: #fff;
+        }
+        .hero h1 { font-size: 50px; max-width: 700px; margin-bottom: 20px; line-height: 1.2; }
+        .hero p { font-size: 18px; max-width: 600px; margin-bottom: 40px; color: #d1d5db; line-height: 1.6; }
+        .btn-gold { background: var(--gold); color: #fff; padding: 15px 35px; text-decoration: none; font-weight: 600; text-transform: uppercase; font-size: 14px; letter-spacing: 1px; }
+        .btn-gold:hover { background: #92400e; }
+        .practice-areas { padding: 80px 50px; background: var(--light); text-align: center; }
+        .practice-areas h2 { color: var(--primary); font-size: 36px; margin-bottom: 50px; }
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .card { background: #fff; padding: 40px; border-top: 4px solid var(--primary); text-align: left; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .card h3 { color: var(--primary); font-size: 22px; margin-bottom: 15px; }
+        .card p { font-size: 15px; color: var(--text); line-height: 1.6; }
+    </style>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Splink",
+      "url": "https://splinkapp.com.br/",
+      "logo": "https://splinkapp.com.br/logo-splink-v2.png",
+      "image": "https://splinkapp.com.br/automacao-whatsapp-splink.png",
+      "description": "Ecossistema completo de automação de WhatsApp, CRM e Agentes de IA.",
+      "sameAs": [
+        "https://www.instagram.com/splink.app/"
+      ]
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">BORGES & ALBUQUERQUE<span>.</span></div>
+        <div class="nav-links">
+            <a href="#">O Escritório</a>
+            <a href="#">Áreas de Atuação</a>
+            <a href="#">Artigos</a>
+            <a href="#">Contato</a>
+        </div>
+    </header>
+    <section class="hero">
+        <h1>Excelência Jurídica e Proteção Patrimonial</h1>
+        <p>Atuação estratégica focada em resultados reais para empresas e indivíduos, garantindo segurança e soluções inovadoras para casos complexos.</p>
+        <a href="#" class="btn-gold">Consultoria Especializada</a>
+    </section>
+    <section class="practice-areas">
+        <h2>Áreas de Atuação</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Direito Empresarial</h3>
+                <p>Consultoria preventiva, constituição de sociedades, fusões, aquisições e estruturação de operações comerciais.</p>
+            </div>
+            <div class="card">
+                <h3>Direito Tributário</h3>
+                <p>Planejamento tributário, recuperação de créditos e defesa em execuções fiscais nas esferas administrativa e judicial.</p>
+            </div>
+            <div class="card">
+                <h3>Direito Civil</h3>
+                <p>Contratos, responsabilidade civil, sucessões, família e litígios estratégicos de alta complexidade.</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

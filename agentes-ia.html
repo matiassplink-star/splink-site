@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentes de IA SDR Premium | Splink</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .premium-hero { padding: 180px 0 100px; text-align: center; position: relative; overflow: hidden; }
+        .premium-hero h1 { font-size: clamp(48px, 10vw, 84px); margin-bottom: 24px; letter-spacing: -2px; }
+        .feature-showcase { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin: 100px 0; }
+        .premium-card { 
+            padding: 40px; 
+            border-radius: 32px; 
+            background: rgba(255, 255, 255, 0.02); 
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .premium-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--accent);
+            transform: translateY(-12px);
+        }
+        .premium-card i { color: var(--accent); margin-bottom: 24px; width: 40px; height: 40px; }
+        .premium-card h3 { font-size: 22px; margin-bottom: 16px; color: white; }
+        .premium-card p { font-size: 15px; line-height: 1.6; color: var(--text-secondary); margin: 0; }
+        
+        .price-container-sdr {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            margin-top: 80px;
+        }
+        .sdr-pricing-card {
+            background: rgba(13, 13, 15, 0.8);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(0, 122, 255, 0.3);
+            border-radius: 40px;
+            padding: 80px 60px;
+            text-align: center;
+            position: relative;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+        .sdr-pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: left;
+            margin: 40px 0;
+            padding: 40px 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .check-item { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: var(--text-secondary); margin-bottom: 12px; }
+        .check-item i { color: #10b981; flex-shrink: 0; margin-top: 2px; }
+    </style>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Splink",
+      "url": "https://splinkapp.com.br/",
+      "logo": "https://splinkapp.com.br/logo-splink-v2.png",
+      "image": "https://splinkapp.com.br/automacao-whatsapp-splink.png",
+      "description": "Ecossistema completo de automação de WhatsApp, CRM e Agentes de IA.",
+      "sameAs": [
+        "https://www.instagram.com/splink.app/"
+      ]
+    }
+    </script>
+</head>
+<body>
+    <nav class="navbar-landing">
+        <a href="index.html" class="splink-logo logo-large">
+            <div class="logo-symbol">
+                <i data-lucide="zap"></i>
+            </div>
+            <div class="logo-text">SPLINK<span>.</span></div>
+        </a>
+    </nav>
+
+    <section class="premium-hero container">
+        <div class="glow-bg" style="top: -200px; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; opacity: 0.1;"></div>
+        <div class="tag animate-up">TECNOLOGIA DE PONTA</div>
+        <h1 class="animate-up">O Futuro das Vendas <br>é <span style="color: var(--accent);">Inteligente.</span></h1>
+        <p class="animate-up" style="max-width: 800px; margin: 0 auto 40px; font-size: 20px;">O Agente de IA SDR mais completo do mercado. Uma secretária digital, vendedora e gestora que nunca dorme, nunca erra e escala seu faturamento no automático.</p>
+    </section>
+
+    <section class="container">
+        <div class="feature-showcase">
+            <div class="premium-card animate-up">
+                <i data-lucide="mic"></i>
+                <h3>Voz & Áudio</h3>
+                <p>O agente escuta áudios dos clientes e responde com voz natural e humana, criando uma conexão real.</p>
+            </div>
+            <div class="premium-card animate-up" style="animation-delay: 0.1s;">
+                <i data-lucide="file-text"></i>
+                <h3>Visão Computacional</h3>
+                <p>Lê PDFs, analisa imagens e processa documentos para dar suporte completo e técnico aos seus leads.</p>
+            </div>
+            <div class="premium-card animate-up" style="animation-delay: 0.2s;">
+                <i data-lucide="calendar"></i>
+                <h3>Agenda Inteligente</h3>
+                <p>Agendamento automático direto na sua agenda (Google/Outlook), filtrando horários disponíveis e confirmando sessões.</p>
+            </div>
+            <div class="premium-card animate-up" style="animation-delay: 0.3s;">
+                <i data-lucide="layout-dashboard"></i>
+                <h3>CRM Kanban Integrado</h3>
+                <p>Visualize todo o seu funil de vendas em tempo real. Cada conversa é um card que se move conforme o progresso.</p>
+            </div>
+            <div class="premium-card animate-up" style="animation-delay: 0.4s;">
+                <i data-lucide="calculator"></i>
+                <h3>Cálculos & Orçamentos</h3>
+                <p>Realiza cálculos complexos na hora e monta orçamentos personalizados baseados nas necessidades do lead.</p>
+            </div>
+            <div class="premium-card animate-up" style="animation-delay: 0.5s;">
+                <i data-lucide="users"></i>
+                <h3>Fila & Multi-atendimento</h3>
+                <p>Gerencie até 20 atendentes simultâneos com distribuição inteligente de leads e filas de espera organizadas.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" style="padding-bottom: 120px;">
+        <div style="text-align: center; margin-bottom: 60px;">
+            <div class="tag">INVESTIMENTO E ESCALA</div>
+            <h2>Sua Estrutura de Elite</h2>
+        </div>
+
+        <div class="price-container-sdr">
+            <div class="sdr-pricing-card animate-up pulse">
+                <div class="price-badge" style="background: var(--accent); padding: 10px 30px; font-size: 14px; top: -25px;">SOLUÇÃO COMPLETA (END-TO-END)</div>
+                
+                <div style="display: flex; justify-content: center; align-items: baseline; gap: 20px; flex-wrap: wrap;">
+                    <div style="text-align: center;">
+                        <span style="font-size: 14px; color: var(--text-secondary); display: block; text-transform: uppercase; letter-spacing: 2px;">IMPLEMENTAÇÃO ÚNICA</span>
+                        <div class="price-current" style="font-size: 84px;">R$ 4.500<span>,00</span></div>
+                    </div>
+                    <div style="font-size: 40px; color: var(--border-color); font-weight: 200;">+</div>
+                    <div style="text-align: center;">
+                        <span style="font-size: 14px; color: var(--text-secondary); display: block; text-transform: uppercase; letter-spacing: 2px;">MANUTENÇÃO MENSAL</span>
+                        <div class="price-current" style="font-size: 84px;">R$ 700<span>,00</span></div>
+                    </div>
+                </div>
+
+                <div class="sdr-pricing-grid">
+                    <div>
+                        <div class="check-item"><i data-lucide="check"></i> <strong>2 Números de WhatsApp</strong></div>
+                        <div class="check-item"><i data-lucide="check"></i> <strong>20 Atendentes Inclusos</strong></div>
+                        <div class="check-item"><i data-lucide="check"></i> <strong>Domínio Personalizado</strong></div>
+                        <div class="check-item"><i data-lucide="check"></i> <strong>Banco de Dados Próprio</strong></div>
+                    </div>
+                    <div>
+                        <div class="check-item"><i data-lucide="check"></i> <strong>Escuta e Manda Áudios</strong></div>
+                        <div class="check-item"><i data-lucide="check"></i> <strong>Lê PDFs e Imagens</strong></div>
+                        <div class="check-item"><i data-lucide="check"></i> <strong>Geração de Orçamentos</strong></div>
+                        <div class="check-item"><i data-lucide="check"></i> <strong>Follow-up Automático</strong></div>
+                    </div>
+                    <div>
+                        <div class="check-item"><i data-lucide="check"></i> <strong>Agenda Inteligente</strong></div>
+                        <div class="check-item"><i data-lucide="check"></i> <strong>CRM Kanban Full</strong></div>
+                        <div class="check-item"><i data-lucide="check"></i> <strong>Alertas Estratégicos</strong></div>
+                        <div class="check-item"><i data-lucide="check"></i> <strong>Qualificação de Leads</strong></div>
+                    </div>
+                </div>
+
+                <a href="questionario.html?s=ia" class="btn btn-primary" style="width: 100%; padding: 30px; font-size: 24px; border-radius: 20px;">
+                    Solicitar Diagnóstico e Contratação
+                    <i data-lucide="chevron-right"></i>
+                </a>
+                <p style="margin-top: 24px; font-size: 14px; color: var(--text-secondary);">Estrutura inteligente pronta para escala massiva. Suporte VIP incluso.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div style="display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 600px; margin: 0 auto;">
+                <a href="index.html" class="splink-logo logo-large" style="margin-bottom: 24px;">
+                    <div class="logo-symbol">
+                        <i data-lucide="zap"></i>
+                    </div>
+                    <div class="logo-text">SPLINK<span>.</span></div>
+                </a>
+                <p style="font-size: 14px; line-height: 1.6; margin-bottom: 32px;">Transformando negócios através de automação inteligente e estratégias digitais de alta performance desde 2019.</p>
+                <div class="footer-social" style="margin-bottom: 40px;">
+                    <a href="https://www.instagram.com/splink.app/" target="_blank"><i data-lucide="instagram"></i></a>
+                    <a href="https://wa.me/5500000000000" target="_blank"><i data-lucide="message-circle"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>&copy; 2019-2026 Splink Soluções Digitais. CNPJ: 32.657.200/0001-08</div>
+                <div class="footer-legal-links">
+                    <a href="status.html">Status</a>
+                    <a href="privacidade.html">Privacidade</a>
+                    <a href="termos.html">Termos</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>

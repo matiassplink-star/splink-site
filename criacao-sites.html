@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criação de Sites | Splink</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .site-hero { padding: 160px 0 80px; text-align: center; }
+        .showcase-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin: 80px 0; }
+        .showcase-item { 
+            border-radius: 24px; 
+            overflow: hidden; 
+            height: 450px; 
+            position: relative; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: flex-end;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .showcase-item:hover { 
+            transform: translateY(-10px) scale(1.02); 
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2); 
+            border-color: var(--accent);
+        }
+        .showcase-item::before { 
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to top, rgba(5,5,6,1) 0%, rgba(5,5,6,0.3) 50%, rgba(0,212,255,0.2) 100%);
+            z-index: 1;
+        }
+        .showcase-content { 
+            padding: 40px; 
+            background: transparent; 
+            position: relative; 
+            z-index: 2; 
+        }
+        .showcase-content h3 { font-size: 28px; margin-bottom: 10px; }
+        .showcase-content p { color: rgba(255,255,255,0.8); font-size: 16px; margin: 0; }
+        .showcase-icon { 
+            position: absolute; 
+            top: 40px; right: 40px; 
+            z-index: 2; 
+            color: var(--accent); 
+            filter: drop-shadow(0 0 10px rgba(0,212,255,0.5));
+        }
+    </style>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Splink",
+      "url": "https://splinkapp.com.br/",
+      "logo": "https://splinkapp.com.br/logo-splink-v2.png",
+      "image": "https://splinkapp.com.br/automacao-whatsapp-splink.png",
+      "description": "Ecossistema completo de automação de WhatsApp, CRM e Agentes de IA.",
+      "sameAs": [
+        "https://www.instagram.com/splink.app/"
+      ]
+    }
+    </script>
+</head>
+<body>
+    <nav class="navbar-landing">
+        <a href="index.html" class="splink-logo logo-large">
+            <div class="logo-symbol">
+                <i data-lucide="zap"></i>
+            </div>
+            <div class="logo-text">SPLINK<span>.</span></div>
+        </a>
+    </nav>
+
+    <section class="site-hero container">
+        <div class="tag">SOLUÇÕES WEB</div>
+        <h1>Criação de <span style="color: var(--accent);">Sites</span> de Alta Conversão</h1>
+        <p style="max-width: 800px; margin: 0 auto;">Desenvolvemos presenças digitais que não apenas são bonitas, mas focadas em transformar cada visitante em um lead qualificado.</p>
+
+        <!-- Plano de Ação Interativo -->
+        <div class="roadmap-container">
+            <div class="tag" style="margin-bottom: 16px;">PRESENÇA DIGITAL</div>
+            <h2 style="margin-bottom: 48px;">Seu Plano de Ação para <span style="color: var(--accent);">Desenvolvimento</span></h2>
+            
+            <div class="roadmap-grid">
+                <!-- Passo 1 -->
+                <div class="roadmap-step animate-up">
+                    <span class="tag-interactive">Fase 01</span>
+                    <div class="step-number">1</div>
+                    <h4>Briefing & Estrutura</h4>
+                    <p>Definimos o objetivo principal e a arquitetura de conversão do seu novo site.</p>
+                    <ul class="roadmap-details">
+                        <li>Definição de jornada do usuário</li>
+                        <li>Sitemap e hierarquia de informação</li>
+                        <li>Estudo de benchmark visual</li>
+                        <li>Alinhamento de objetivos (Leads/Venda)</li>
+                    </ul>
+                </div>
+
+                <!-- Passo 2 -->
+                <div class="roadmap-step animate-up" style="animation-delay: 0.1s;">
+                    <span class="tag-interactive">Fase 02</span>
+                    <div class="step-number">2</div>
+                    <h4>Design UI/UX</h4>
+                    <p>Criamos um protótipo visual moderno focado em autoridade e confiança.</p>
+                    <ul class="roadmap-details">
+                        <li>Criação de layout exclusivo</li>
+                        <li>Design responsivo (Mobile-First)</li>
+                        <li>Escolha de ativos visuais premium</li>
+                        <li>Revisão e ajustes de design</li>
+                    </ul>
+                </div>
+
+                <!-- Passo 3 -->
+                <div class="roadmap-step animate-up" style="animation-delay: 0.2s;">
+                    <span class="tag-interactive">Fase 03</span>
+                    <div class="step-number">3</div>
+                    <h4>Desenvolvimento & SEO</h4>
+                    <p>Transformamos o design em código rápido, limpo e otimizado para o Google.</p>
+                    <ul class="roadmap-details">
+                        <li>Coding otimizado (HTML/JS/CSS)</li>
+                        <li>Otimização de velocidade (Lighthouse)</li>
+                        <li>Configuração de SEO On-Page</li>
+                        <li>Integração de formulários e APIs</li>
+                    </ul>
+                </div>
+
+                <!-- Passo 4 -->
+                <div class="roadmap-step animate-up" style="animation-delay: 0.3s;">
+                    <span class="tag-interactive">Fase 04</span>
+                    <div class="step-number">4</div>
+                    <h4>Hospedagem & Lançamento</h4>
+                    <p>Colocamos seu site no ar com segurança total e suporte contínuo.</p>
+                    <ul class="roadmap-details">
+                        <li>Configuração de servidor seguro</li>
+                        <li>Instalação de certificado SSL</li>
+                        <li>Testes finais de cross-browser</li>
+                        <li>Treinamento de edição básica</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="margin-top: 40px; font-size: 14px; opacity: 0.6;">* Passe o mouse (ou toque) nos cards para ver os detalhes de cada fase.</p>
+        </div>
+
+        <div class="showcase-grid">
+            <!-- Imobiliária -->
+            <div class="showcase-item" onclick="window.open('demo-imobiliaria.html', '_blank')" style="cursor: pointer; background: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80') center/cover;" title="Ver Demonstração">
+                <i data-lucide="home" class="showcase-icon" style="width: 48px; height: 48px;"></i>
+                <div class="showcase-content">
+                    <h3>Portais Imobiliários</h3>
+                    <p>Sistemas com busca avançada, filtros dinâmicos e integração com portais de anúncio.</p>
+                </div>
+            </div>
+
+            <!-- Ecommerce -->
+            <div class="showcase-item" onclick="window.open('demo-ecommerce.html', '_blank')" style="cursor: pointer; background: url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=800&q=80') center/cover;" title="Ver Demonstração">
+                <i data-lucide="shopping-bag" class="showcase-icon" style="width: 48px; height: 48px;"></i>
+                <div class="showcase-content">
+                    <h3>E-commerce de Luxo</h3>
+                    <p>Lojas virtuais performáticas com checkout otimizado e design focado na experiência de compra.</p>
+                </div>
+            </div>
+
+            <!-- Clínicas -->
+            <div class="showcase-item" onclick="window.open('demo-clinica.html', '_blank')" style="cursor: pointer; background: url('https://images.unsplash.com/photo-1638202993928-7267aad84c31?auto=format&fit=crop&w=800&q=80') center/cover;" title="Ver Demonstração">
+                <i data-lucide="stethoscope" class="showcase-icon" style="width: 48px; height: 48px;"></i>
+                <div class="showcase-content">
+                    <h3>Clínicas & Saúde</h3>
+                    <p>Sites que transmitem autoridade, com agendamento online e informações claras para os pacientes.</p>
+                </div>
+            </div>
+
+            <!-- Advogados -->
+            <div class="showcase-item" onclick="window.open('demo-advocacia.html', '_blank')" style="cursor: pointer; background: url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=800&q=80') center/cover;" title="Ver Demonstração">
+                <i data-lucide="scale" class="showcase-icon" style="width: 48px; height: 48px;"></i>
+                <div class="showcase-content">
+                    <h3>Escritórios de Advocacia</h3>
+                    <p>Design sóbrio e elegante, focado em credibilidade e captação de clientes jurídicos.</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 60px;">
+            <a href="questionario.html?s=sites" class="btn btn-primary" style="padding: 20px 40px; font-size: 18px;">
+                Solicitar Orçamento de Projeto
+                <i data-lucide="arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div style="display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 600px; margin: 0 auto;">
+                <a href="index.html" class="splink-logo logo-large" style="margin-bottom: 24px;">
+                    <div class="logo-symbol">
+                        <i data-lucide="zap"></i>
+                    </div>
+                    <div class="logo-text">SPLINK<span>.</span></div>
+                </a>
+                <p style="font-size: 14px; line-height: 1.6; margin-bottom: 32px;">Transformando negócios através de automação inteligente e estratégias digitais de alta performance desde 2019.</p>
+                <div class="footer-social" style="margin-bottom: 40px;">
+                    <a href="https://www.instagram.com/splink.app/" target="_blank"><i data-lucide="instagram"></i></a>
+                    <a href="https://wa.me/5500000000000" target="_blank"><i data-lucide="message-circle"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>&copy; 2019-2026 Splink Soluções Digitais. CNPJ: 32.657.200/0001-08</div>
+                <div class="footer-legal-links">
+                    <a href="status.html">Status</a>
+                    <a href="#">Privacidade</a>
+                    <a href="#">Termos</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="cookie-banner">
+        <div class="cookie-content">
+            Utilizamos cookies para melhorar sua experiência. Ao continuar, você concorda com nossa <a href="#" style="color: var(--accent);">Política de Privacidade</a>.
+        </div>
+        <button class="btn btn-primary" id="acceptCookies" style="white-space: nowrap;">Aceitar</button>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

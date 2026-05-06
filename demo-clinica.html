@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitalis | Saúde Integrada</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0d9488;
+            --secondary: #0f766e;
+            --text: #334155;
+            --bg: #f8fafc;
+        }
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+        header {
+            background: #fff;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        .logo { font-size: 24px; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        .logo span { color: var(--text); font-weight: 300; }
+        .nav-links a { color: var(--text); text-decoration: none; margin-left: 30px; font-weight: 500; font-size: 15px; }
+        .btn-teal { background: var(--primary); color: #fff !important; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: 0.3s; }
+        .btn-teal:hover { background: var(--secondary); }
+        .hero {
+            display: flex;
+            align-items: center;
+            padding: 80px 50px;
+            background: #fff;
+        }
+        .hero-text { flex: 1; padding-right: 50px; }
+        .hero-text h1 { font-size: 48px; color: #0f172a; line-height: 1.2; margin-bottom: 20px; }
+        .hero-text p { font-size: 18px; color: #64748b; margin-bottom: 40px; }
+        .hero-img { flex: 1; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+        .hero-img img { width: 100%; display: block; }
+        .services { padding: 80px 50px; text-align: center; }
+        .services h2 { font-size: 36px; color: #0f172a; margin-bottom: 50px; }
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .card { background: #fff; padding: 40px 30px; border-radius: 16px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05); transition: 0.3s; }
+        .card:hover { transform: translateY(-10px); }
+        .card h3 { color: var(--primary); font-size: 20px; margin-bottom: 15px; }
+        .card p { color: #64748b; font-size: 15px; }
+    </style>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Splink",
+      "url": "https://splinkapp.com.br/",
+      "logo": "https://splinkapp.com.br/logo-splink-v2.png",
+      "image": "https://splinkapp.com.br/automacao-whatsapp-splink.png",
+      "description": "Ecossistema completo de automação de WhatsApp, CRM e Agentes de IA.",
+      "sameAs": [
+        "https://www.instagram.com/splink.app/"
+      ]
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            VITALIS <span>Saúde</span>
+        </div>
+        <div class="nav-links">
+            <a href="#">Especialidades</a>
+            <a href="#">Corpo Clínico</a>
+            <a href="#">Convênios</a>
+            <a href="#" class="btn-teal">Agendar Consulta</a>
+        </div>
+    </header>
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Cuidado integral para você e sua família</h1>
+            <p>Corpo clínico altamente qualificado, tecnologia de ponta e atendimento humanizado em um só lugar.</p>
+            <a href="#" class="btn-teal" style="font-size: 18px; padding: 15px 30px;">Agendar pelo WhatsApp</a>
+        </div>
+        <div class="hero-img">
+            <img src="https://images.unsplash.com/photo-1638202993928-7267aad84c31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Médicos">
+        </div>
+    </section>
+    <section class="services">
+        <h2>Nossas Especialidades</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Cardiologia</h3>
+                <p>Prevenção, diagnóstico e tratamento de doenças do coração e do sistema circulatório.</p>
+            </div>
+            <div class="card">
+                <h3>Pediatria</h3>
+                <p>Acompanhamento completo do desenvolvimento infantil com profissionais experientes.</p>
+            </div>
+            <div class="card">
+                <h3>Dermatologia</h3>
+                <p>Cuidados clínicos, cirúrgicos e estéticos para a saúde da sua pele e cabelos.</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

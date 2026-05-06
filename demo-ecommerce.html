@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Noir | Luxury Fashion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: #000;
+            color: #fff;
+        }
+        h1, h2, .logo { font-family: 'Cinzel', serif; }
+        header {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+        }
+        .logo { font-size: 32px; letter-spacing: 4px; }
+        .nav-links a { color: #fff; text-decoration: none; margin-left: 30px; text-transform: uppercase; font-size: 12px; letter-spacing: 2px; }
+        .hero {
+            height: 80vh;
+            background: url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            padding-left: 100px;
+        }
+        .hero h1 { font-size: 72px; margin: 0; }
+        .hero p { font-size: 14px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 30px; }
+        .btn-white { border: 1px solid #fff; padding: 15px 40px; color: #fff; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 12px; transition: 0.3s; }
+        .btn-white:hover { background: #fff; color: #000; }
+        .collection { padding: 100px 50px; text-align: center; }
+        .collection h2 { font-size: 36px; margin-bottom: 60px; letter-spacing: 4px; }
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .product { text-align: center; }
+        .product img { width: 100%; height: 500px; object-fit: cover; filter: grayscale(50%); transition: 0.5s; }
+        .product:hover img { filter: grayscale(0%); }
+        .product h3 { margin: 20px 0 5px; font-size: 16px; letter-spacing: 2px; font-weight: 400; }
+        .product .price { color: #888; font-size: 14px; }
+    </style>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Splink",
+      "url": "https://splinkapp.com.br/",
+      "logo": "https://splinkapp.com.br/logo-splink-v2.png",
+      "image": "https://splinkapp.com.br/automacao-whatsapp-splink.png",
+      "description": "Ecossistema completo de automação de WhatsApp, CRM e Agentes de IA.",
+      "sameAs": [
+        "https://www.instagram.com/splink.app/"
+      ]
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">AURA NOIR</div>
+        <div class="nav-links">
+            <a href="#">Coleções</a>
+            <a href="#">Sapatos</a>
+            <a href="#">Bolsas</a>
+            <a href="#">Maison</a>
+        </div>
+    </header>
+    <section class="hero">
+        <div>
+            <p>Nova Coleção Outono/Inverno</p>
+            <h1>Essência da<br>Escuridão</h1>
+            <br>
+            <a href="#" class="btn-white">Descobrir</a>
+        </div>
+    </section>
+    <section class="collection">
+        <h2>Peças Desejo</h2>
+        <div class="grid">
+            <div class="product">
+                <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dress">
+                <h3>Vestido Obsidian</h3>
+                <div class="price">R$ 4.590</div>
+            </div>
+            <div class="product">
+                <img src="https://images.unsplash.com/photo-1584916201218-f4242ceb4809?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Bag">
+                <h3>Bolsa Nuit</h3>
+                <div class="price">R$ 12.800</div>
+            </div>
+            <div class="product">
+                <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Shoes">
+                <h3>Scarpin Velvet</h3>
+                <div class="price">R$ 3.200</div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico Estratégico | Splink</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { 
+            background: #050506; 
+            overflow-x: hidden; 
+            color: white;
+            font-family: monospace;
+        }
+        .form-page { 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            padding: 140px 20px 60px;
+        }
+        .glass-container {
+            width: 100%;
+            max-width: 700px;
+            background: rgba(5, 5, 6, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            padding: 60px;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.15);
+            position: relative;
+        }
+        .progress-container {
+            width: 100%;
+            max-width: 700px;
+            height: 4px;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 2px;
+            margin-bottom: 40px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            background: var(--accent);
+            width: 16.66%;
+            transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+        }
+        .step-container {
+            display: none;
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .step-container.active { display: block; }
+        
+        .question-label {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 32px;
+            line-height: 1.3;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+        }
+        .input-wrapper { position: relative; margin-bottom: 40px; }
+        .input-wrapper input, .input-wrapper select, .input-wrapper textarea {
+            width: 100%;
+            background: rgba(0, 212, 255, 0.03);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 4px;
+            color: var(--accent);
+            font-size: 20px;
+            padding: 20px 24px;
+            transition: all 0.3s ease;
+            font-family: monospace;
+        }
+        .input-wrapper input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(0, 212, 255, 0.08);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2) inset;
+        }
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        .option-card {
+            padding: 20px 24px;
+            background: rgba(0, 212, 255, 0.02);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 4px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .option-card:hover {
+            background: rgba(0, 212, 255, 0.05);
+            border-color: rgba(0, 212, 255, 0.3);
+            transform: translateX(5px);
+            color: var(--accent);
+        }
+        .option-card.selected {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: var(--accent);
+            color: var(--accent);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+            font-weight: bold;
+        }
+        .btn-nav {
+            padding: 18px 36px;
+            font-size: 16px;
+            border-radius: 16px;
+        }
+        .glow-orb {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            pointer-events: none;
+        }
+    </style>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Splink",
+      "url": "https://splinkapp.com.br/",
+      "logo": "https://splinkapp.com.br/logo-splink-v2.png",
+      "image": "https://splinkapp.com.br/automacao-whatsapp-splink.png",
+      "description": "Ecossistema completo de automação de WhatsApp, CRM e Agentes de IA.",
+      "sameAs": [
+        "https://www.instagram.com/splink.app/"
+      ]
+    }
+    </script>
+</head>
+<body>
+    <nav class="navbar-landing">
+        <a href="index.html" class="splink-logo logo-large">
+            <div class="logo-symbol">
+                <i data-lucide="zap"></i>
+            </div>
+            <div class="logo-text">SPLINK<span>.</span></div>
+        </a>
+    </nav>
+
+    <div class="glow-orb" style="top: 10%; right: -10%;"></div>
+    <div class="glow-orb" style="bottom: 5%; left: -5%;"></div>
+
+    <div class="form-page">
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div id="progress" class="progress-bar"></div>
+        </div>
+
+        <div class="glass-container">
+            <form id="multiStepForm">
+                <!-- Passo 1: Nome -->
+                <div class="step-container active" data-step="1">
+                    <div class="tag" style="margin-bottom: 12px;">IDENTIFICAÇÃO</div>
+                    <div class="question-label" id="q1">Para começar, qual é o seu nome?</div>
+                    <div class="input-wrapper">
+                        <input type="text" id="userName" placeholder="Digite seu nome completo" required autocomplete="name">
+                    </div>
+                    <button type="button" class="btn btn-primary btn-nav" onclick="nextStep(1)">Continuar <i data-lucide="arrow-right"></i></button>
+                </div>
+
+                <!-- Passo 2: WhatsApp -->
+                <div class="step-container" data-step="2">
+                    <div class="tag" style="margin-bottom: 12px;">CONTATO</div>
+                    <div class="question-label" id="q2">Qual seu WhatsApp para retorno?</div>
+                    <div class="input-wrapper">
+                        <input type="tel" id="userPhone" placeholder="(00) 00000-0000" required autocomplete="tel">
+                    </div>
+                    <div style="display: flex; gap: 16px;">
+                        <button type="button" class="btn btn-secondary btn-nav" onclick="prevStep(2)">Voltar</button>
+                        <button type="button" class="btn btn-primary btn-nav" onclick="nextStep(2)">Continuar <i data-lucide="arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Passo 3: Empresa -->
+                <div class="step-container" data-step="3">
+                    <div class="tag" style="margin-bottom: 12px;">NEGÓCIO</div>
+                    <div class="question-label" id="q3">Qual o nome da sua empresa?</div>
+                    <div class="input-wrapper">
+                        <input type="text" id="userCompany" placeholder="Nome da empresa" required autocomplete="organization">
+                    </div>
+                    <div style="display: flex; gap: 16px;">
+                        <button type="button" class="btn btn-secondary btn-nav" onclick="prevStep(3)">Voltar</button>
+                        <button type="button" class="btn btn-primary btn-nav" onclick="nextStep(3)">Continuar <i data-lucide="arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Passo 4: Dinâmico (Volume/Necessidade) -->
+                <div class="step-container" data-step="4">
+                    <div class="tag" style="margin-bottom: 12px;">DEMANDA</div>
+                    <div class="question-label" id="dynamicQ4">Qual sua necessidade principal?</div>
+                    <div id="dynamicOptions4" class="options-grid">
+                        <!-- Gerado via JS -->
+                    </div>
+                    <input type="hidden" id="val4" required>
+                    <div style="display: flex; gap: 16px;">
+                        <button type="button" class="btn btn-secondary btn-nav" onclick="prevStep(4)">Voltar</button>
+                        <button type="button" class="btn btn-primary btn-nav" onclick="nextStep(4)">Continuar <i data-lucide="arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Passo 5: Dinâmico (Objetivo/Escala) -->
+                <div class="step-container" data-step="5">
+                    <div class="tag" style="margin-bottom: 12px;">OBJETIVO</div>
+                    <div class="question-label" id="dynamicQ5">O que você busca alcançar?</div>
+                    <div id="dynamicOptions5" class="options-grid">
+                        <!-- Gerado via JS -->
+                    </div>
+                    <input type="hidden" id="val5" required>
+                    <div style="display: flex; gap: 16px;">
+                        <button type="button" class="btn btn-secondary btn-nav" onclick="prevStep(5)">Voltar</button>
+                        <button type="button" class="btn btn-primary btn-nav" onclick="nextStep(5)">Continuar <i data-lucide="arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Passo 6: Observações -->
+                <div class="step-container" data-step="6">
+                    <div class="tag" style="margin-bottom: 12px;">FINALIZAR</div>
+                    <div class="question-label">Algo mais que deveríamos saber?</div>
+                    <div class="input-wrapper">
+                        <textarea id="userNotes" rows="3" placeholder="Sua mensagem adicional..."></textarea>
+                    </div>
+                    <div style="display: flex; gap: 16px;">
+                        <button type="button" class="btn btn-secondary btn-nav" onclick="prevStep(6)">Voltar</button>
+                        <button type="submit" class="btn btn-primary btn-nav" style="background: var(--accent-gradient);">Enviar Diagnóstico <i data-lucide="check"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        
+        const params = new URLSearchParams(window.location.search);
+        const service = params.get('s') || 'ia';
+        
+        let currentStep = 1;
+        const totalSteps = 6;
+
+        const content = {
+            ia: {
+                q4: 'Qual o volume mensal de leads da empresa?',
+                options4: [
+                    { label: 'Até 100 leads/mês', value: '100' },
+                    { label: '101 a 500 leads/mês', value: '500' },
+                    { label: '501 a 2000 leads/mês', value: '2000' },
+                    { label: 'Mais de 2000 leads/mês', value: '2000+' }
+                ],
+                q5: 'Qual a maior dor do seu atendimento hoje?',
+                options5: [
+                    { label: 'Demora para responder e qualificar', value: 'delay' },
+                    { label: 'Muitos leads para pouco time', value: 'scale' },
+                    { label: 'Dificuldade em manter follow-up', value: 'followup' },
+                    { label: 'Perda de leads fora do horário comercial', value: '24h' }
+                ]
+            },
+            zaplink: {
+                q4: 'Quantas mensagens por dia pretende enviar?',
+                options4: [
+                    { label: 'Até 1.000 mensagens/dia', value: '1000' },
+                    { label: '1.000 a 5.000 mensagens/dia', value: '5000' },
+                    { label: 'Mais de 10.000 mensagens/dia', value: '10000+' }
+                ],
+                q5: 'Qual seu objetivo com o ZapLink?',
+                options5: [
+                    { label: 'Prospecção Fria (Cold Outreach)', value: 'cold' },
+                    { label: 'Avisos e Lembretes para Clientes', value: 'reminders' },
+                    { label: 'Vendas Massivas para Base Própria', value: 'broadcast' }
+                ]
+            },
+            api: {
+                q4: 'Qual a modalidade de API você busca?',
+                options4: [
+                    { label: 'API Não-Oficial (Foco em Marketing)', value: 'unofficial' },
+                    { label: 'API Oficial (Foco em Atendimento)', value: 'official' },
+                    { label: 'Ainda não sei a diferença', value: 'unknown' }
+                ],
+                q5: 'Qual o volume mensal estimado de envios?',
+                options5: [
+                    { label: 'Até 10.000 disparos/mês', value: '10k' },
+                    { label: '10.000 a 50.000 disparos/mês', value: '50k' },
+                    { label: 'Mais de 100.000 disparos/mês', value: '100k+' }
+                ]
+            },
+            crm: {
+                q4: 'Quantos usuários utilizarão o CRM?',
+                options4: [
+                    { label: 'Apenas 1 (Eu mesmo)', value: '1' },
+                    { label: 'De 2 a 10 usuários', value: '10' },
+                    { label: 'Mais de 10 usuários', value: '10+' }
+                ],
+                q5: 'Qual seu maior objetivo com o CRM?',
+                options5: [
+                    { label: 'Organizar o Funil de Vendas', value: 'funnel' },
+                    { label: 'Automação de Mensagens', value: 'automation' },
+                    { label: 'Gestão de Leads e Equipe', value: 'management' }
+                ]
+            },
+            sites: {
+                q4: 'Qual o tipo de site você precisa?',
+                options4: [
+                    { label: 'Site Institucional Premium', value: 'institutional' },
+                    { label: 'Loja Virtual (E-commerce)', value: 'ecommerce' },
+                    { label: 'Portal de Conteúdo / Blog', value: 'portal' }
+                ],
+                q5: 'O que é mais importante para o site?',
+                options5: [
+                    { label: 'Design Moderno e Autoridade', value: 'design' },
+                    { label: 'Velocidade e SEO', value: 'performance' },
+                    { label: 'Integração com WhatsApp/CRM', value: 'integration' }
+                ]
+            },
+            trafego: {
+                q4: 'Qual seu investimento mensal em anúncios?',
+                options4: [
+                    { label: 'Até R$ 1.000 / mês', value: '1k' },
+                    { label: 'R$ 1.000 a R$ 5.000 / mês', value: '5k' },
+                    { label: 'Mais de R$ 5.000 / mês', value: '5k+' }
+                ],
+                q5: 'Onde você pretende anunciar?',
+                options5: [
+                    { label: 'Google Ads (Pesquisa)', value: 'google' },
+                    { label: 'Meta Ads (Instagram/FB)', value: 'meta' },
+                    { label: 'Estratégia Híbrida (Ambos)', value: 'hybrid' }
+                ]
+            },
+            consultoria: {
+                q4: 'Qual a principal área para automação?',
+                options4: [
+                    { label: 'Processos Internos / Operação', value: 'ops' },
+                    { label: 'Atendimento ao Cliente', value: 'support' },
+                    { label: 'Vendas e Comercial', value: 'sales' }
+                ],
+                q5: 'Qual sua maior expectativa?',
+                options5: [
+                    { label: 'Redução de Custos / Time', value: 'cost' },
+                    { label: 'Aumento de Conversão', value: 'conversion' },
+                    { label: 'Inovação e Tecnologia', value: 'innovation' }
+                ]
+            },
+            social: {
+                q4: 'Em quantas redes sua marca atua?',
+                options4: [
+                    { label: 'Apenas 1 rede', value: '1' },
+                    { label: 'De 2 a 3 redes', value: '3' },
+                    { label: 'Mais de 3 redes', value: '3+' }
+                ],
+                q5: 'O que você busca com Social Media?',
+                options5: [
+                    { label: 'Autoridade e Branding', value: 'branding' },
+                    { label: 'Vendas Diretas', value: 'sales' },
+                    { label: 'Engajamento e Comunidade', value: 'engagement' }
+                ]
+            },
+            lp: {
+                q4: 'Qual o objetivo dessa Landing Page?',
+                options4: [
+                    { label: 'Venda de Produto Digital', value: 'infoproduct' },
+                    { label: 'Captação de Leads B2B', value: 'b2b' },
+                    { label: 'Lançamento Massivo', value: 'launch' }
+                ],
+                q5: 'Qual volume de tráfego esperado?',
+                options5: [
+                    { label: 'Até 5.000 visitas/mês', value: '5k' },
+                    { label: '5.000 a 20.000 visitas/mês', value: '20k' },
+                    { label: 'Mais de 20.000 visitas/mês', value: '20k+' }
+                ]
+            },
+            leads: {
+                q4: 'Qual seu nicho de prospecção?',
+                options4: [
+                    { label: 'B2B (Empresas)', value: 'b2b' },
+                    { label: 'B2C (Consumidor Final)', value: 'b2c' },
+                    { label: 'Nicho Imobiliário / Veículos', value: 'niche' }
+                ],
+                q5: 'Como você aborda seus leads hoje?',
+                options5: [
+                    { label: 'Ligação Telefônica', value: 'call' },
+                    { label: 'WhatsApp Manual', value: 'manual' },
+                    { label: 'E-mail Marketing', value: 'email' }
+                ]
+            }
+        };
+
+        const config = content[service] || content.ia;
+
+        // Initialize Dynamic Content
+        document.getElementById('dynamicQ4').innerText = config.q4;
+        document.getElementById('dynamicQ5').innerText = config.q5;
+        
+        const opt4 = document.getElementById('dynamicOptions4');
+        config.options4.forEach(opt => {
+            const card = document.createElement('div');
+            card.className = 'option-card';
+            card.innerText = opt.label;
+            card.onclick = () => selectOption(card, '4', opt.value);
+            opt4.appendChild(card);
+        });
+
+        const opt5 = document.getElementById('dynamicOptions5');
+        config.options5.forEach(opt => {
+            const card = document.createElement('div');
+            card.className = 'option-card';
+            card.innerText = opt.label;
+            card.onclick = () => selectOption(card, '5', opt.value);
+            opt5.appendChild(card);
+        });
+
+        function updateProgress() {
+            const progress = (currentStep / totalSteps) * 100;
+            document.getElementById('progress').style.width = progress + '%';
+        }
+
+        function nextStep(step) {
+            const currentContainer = document.querySelector(`[data-step="${step}"]`);
+            const input = currentContainer.querySelector('input[required]');
+            const hidden = currentContainer.querySelector('input[type="hidden"]');
+            
+            if((input && !input.value) || (hidden && !hidden.value)) {
+                alert('Por favor, responda esta pergunta para continuar.');
+                return;
+            }
+
+            currentContainer.classList.remove('active');
+            currentStep++;
+            document.querySelector(`[data-step="${currentStep}"]`).classList.add('active');
+            updateProgress();
+        }
+
+        function prevStep(step) {
+            document.querySelector(`[data-step="${step}"]`).classList.remove('active');
+            currentStep--;
+            document.querySelector(`[data-step="${currentStep}"]`).classList.add('active');
+            updateProgress();
+        }
+
+        function selectOption(element, step, value) {
+            const cards = element.parentElement.querySelectorAll('.option-card');
+            cards.forEach(card => card.classList.remove('selected'));
+            element.classList.add('selected');
+            document.getElementById('val' + step).value = value;
+        }
+
+        document.getElementById('multiStepForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Diagnóstico enviado. Entraremos em contato em breve.');
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

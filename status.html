@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status do Sistema | Splink</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .status-header { padding: 120px 0 60px; text-align: center; }
+        .status-header h1 { font-family: monospace; text-shadow: 0 0 10px rgba(0, 212, 255, 0.3); }
+        .status-header p { font-family: monospace; letter-spacing: 1px; color: rgba(255, 255, 255, 0.6); }
+        .status-grid { max-width: 800px; margin: 0 auto 100px; display: grid; gap: 16px; }
+        .status-item { 
+            padding: 24px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            background: rgba(0, 212, 255, 0.02);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            font-family: monospace;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        .status-item::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; width: 4px; height: 100%;
+            background: var(--accent);
+            box-shadow: 0 0 15px var(--accent);
+        }
+        .status-item:hover {
+            border-color: rgba(0, 212, 255, 0.3);
+            background: rgba(0, 212, 255, 0.05);
+            transform: translateX(5px);
+        }
+        .status-name {
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+        .status-details {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        .status-ping {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+        .status-badge {
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--accent);
+            padding: 6px 16px;
+            border-radius: 4px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 1px;
+        }
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent);
+        }
+    </style>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Splink",
+      "url": "https://splinkapp.com.br/",
+      "logo": "https://splinkapp.com.br/logo-splink-v2.png",
+      "image": "https://splinkapp.com.br/automacao-whatsapp-splink.png",
+      "description": "Ecossistema completo de automação de WhatsApp, CRM e Agentes de IA.",
+      "sameAs": [
+        "https://www.instagram.com/splink.app/"
+      ]
+    }
+    </script>
+</head>
+<body>
+    <nav class="navbar-landing">
+        <a href="index.html" class="splink-logo logo-large">
+            <div class="logo-symbol">
+                <i data-lucide="zap"></i>
+            </div>
+            <div class="logo-text">SPLINK<span>.</span></div>
+        </a>
+    </nav>
+
+    <section class="status-header container">
+        <div class="tag">MONITORAMENTO</div>
+        <h1>Status do <span style="color: var(--accent);">Sistema</span></h1>
+        <p>Acompanhe em tempo real a integridade de todos os nossos serviços.</p>
+    </section>
+
+    <section class="container">
+        <div class="status-grid">
+            <div class="status-item">
+                <div class="status-name">Sistema ZapLink Pro</div>
+                <div class="status-details">
+                    <div class="status-ping ping-val" data-base="14">PING: 14ms</div>
+                    <div class="status-badge">
+                        <div class="status-indicator blink"></div>
+                        ONLINE
+                    </div>
+                </div>
+            </div>
+            <div class="status-item">
+                <div class="status-name">OLX Extractor</div>
+                <div class="status-details">
+                    <div class="status-ping ping-val" data-base="22">PING: 22ms</div>
+                    <div class="status-badge">
+                        <div class="status-indicator blink"></div>
+                        ONLINE
+                    </div>
+                </div>
+            </div>
+            <div class="status-item">
+                <div class="status-name">Agentes de IA SDR</div>
+                <div class="status-details">
+                    <div class="status-ping ping-val" data-base="45">PING: 45ms</div>
+                    <div class="status-badge">
+                        <div class="status-indicator blink"></div>
+                        ONLINE
+                    </div>
+                </div>
+            </div>
+            <div class="status-item">
+                <div class="status-name">Extrator Google (Beta)</div>
+                <div class="status-details">
+                    <div class="status-ping ping-val" data-base="18">PING: 18ms</div>
+                    <div class="status-badge">
+                        <div class="status-indicator blink"></div>
+                        ONLINE
+                    </div>
+                </div>
+            </div>
+            <div class="status-item">
+                <div class="status-name">Servidores de API</div>
+                <div class="status-details">
+                    <div class="status-ping ping-val" data-base="8">PING: 8ms</div>
+                    <div class="status-badge">
+                        <div class="status-indicator blink"></div>
+                        ONLINE
+                    </div>
+                </div>
+            </div>
+            <div class="status-item">
+                <div class="status-name">Portal do Cliente</div>
+                <div class="status-details">
+                    <div class="status-ping ping-val" data-base="12">PING: 12ms</div>
+                    <div class="status-badge">
+                        <div class="status-indicator blink"></div>
+                        ONLINE
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div style="display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 600px; margin: 0 auto;">
+                <a href="index.html" class="splink-logo logo-large" style="margin-bottom: 24px;">
+                    <div class="logo-symbol">
+                        <i data-lucide="zap"></i>
+                    </div>
+                    <div class="logo-text">SPLINK<span>.</span></div>
+                </a>
+                <p style="font-size: 14px; line-height: 1.6; margin-bottom: 32px;">Transformando negócios através de automação inteligente e estratégias digitais de alta performance desde 2019.</p>
+                <div class="footer-social" style="margin-bottom: 40px;">
+                    <a href="https://www.instagram.com/splink.app/" target="_blank"><i data-lucide="instagram"></i></a>
+                    <a href="https://wa.me/5500000000000" target="_blank"><i data-lucide="message-circle"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>&copy; 2019-2026 Splink Soluções Digitais. CNPJ: 32.657.200/0001-08</div>
+                <div class="footer-legal-links">
+                    <a href="status.html">Status</a>
+                    <a href="privacidade.html">Privacidade</a>
+                    <a href="termos.html">Termos</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="cookie-banner">
+        <div class="cookie-content">
+            Utilizamos cookies para melhorar sua experiência. Ao continuar, você concorda com nossa <a href="#" style="color: var(--accent);">Política de Privacidade</a>.
+        </div>
+        <button class="btn btn-primary" id="acceptCookies" style="white-space: nowrap;">Aceitar</button>
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+        setInterval(() => {
+            document.querySelectorAll('.ping-val').forEach(el => {
+                const base = parseInt(el.getAttribute('data-base') || 12);
+                const variance = Math.floor(Math.random() * 8) - 4; // variação de -4 a +4
+                el.innerText = `PING: ${Math.max(1, base + variance)}ms`;
+            });
+        }, 1500);
+    </script>
+</body>
+</html>
