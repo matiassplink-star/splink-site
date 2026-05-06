@@ -134,11 +134,24 @@ const handleBotResponse = (userText) => {
             step = 2;
         } else if (step === 2) {
             leadData.phone = userText;
-            addMessage("Anotado. Um de nossos consultores entrará em contato em breve. Enquanto isso, quer saber mais sobre o ZapLink ou nossos Agentes de IA?", "bot");
+            addMessage("Anotado. Para agilizar seu atendimento e garantir sua licença, clique no botão abaixo para validar seus dados via WhatsApp.", "bot");
+            
+            const waBtn = document.createElement('button');
+            waBtn.className = 'btn btn-primary';
+            waBtn.style.marginTop = '12px';
+            waBtn.style.width = '100%';
+            waBtn.innerHTML = '<i data-lucide="message-circle"></i> Finalizar via WhatsApp';
+            waBtn.onclick = () => {
+                const msg = `Protocolo de Escala - Lead Chatbot\n\nNome: ${leadData.name}\nWhatsApp: ${leadData.phone}\nInteresse: Atendimento via Site`;
+                window.open(`https://wa.me/5511999999999?text=${encodeURIComponent(msg)}`, '_blank');
+            };
+            chatMessages.appendChild(waBtn);
+            lucide.createIcons();
+            
             console.log("Lead Capturado:", leadData);
             step = 3;
         } else {
-            addMessage("Entendido. Vou avisar meu time agora mesmo. Tem algo mais que eu possa fazer?", "bot");
+            addMessage("Entendido. Nosso time tático já foi alertado. Algo mais?", "bot");
         }
     }, 1000);
 };

@@ -222,12 +222,30 @@
 
         document.getElementById('quizForm').addEventListener('submit', (e) => {
             e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const site = document.getElementById('site').value;
+            const instagram = document.getElementById('instagram').value;
+            const revenue = document.getElementById('revenue').value;
+
+            const message = `ANÁLISE DE NEGÓCIO - LEAD SITE\n\n` +
+                          `Nome: ${name}\n` +
+                          `E-mail: ${email}\n` +
+                          `Site: ${site}\n` +
+                          `Instagram: ${instagram}\n` +
+                          `Faturamento: ${revenue}`;
+
+            const waUrl = `https://wa.me/5511999999999?text=${encodeURIComponent(message)}`;
+            
             document.getElementById(`step${currentStep}`).classList.remove('active');
             document.getElementById('stepSuccess').classList.add('active');
             document.getElementById('progress').style.width = '100%';
             
-            // Aqui integraria com a API de disparo ou CRM
-            console.log("Dados enviados para Splink");
+            // Redireciona após 2 segundos para o usuário ver a mensagem de sucesso
+            setTimeout(() => {
+                window.location.href = waUrl;
+            }, 2000);
         });
 
         // Enter key to next step

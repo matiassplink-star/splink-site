@@ -472,8 +472,25 @@
 
         document.getElementById('multiStepForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Diagnóstico enviado. Entraremos em contato em breve.');
-            window.location.href = 'index.html';
+            
+            const name = document.getElementById('userName').value;
+            const phone = document.getElementById('userPhone').value;
+            const company = document.getElementById('userCompany').value;
+            const demand = document.getElementById('val4').value;
+            const objective = document.getElementById('val5').value;
+            const notes = document.getElementById('userNotes').value;
+
+            const message = `SOLICITAÇÃO DE DIAGNÓSTICO ESTRATÉGICO\n\n` +
+                          `Nome: ${name}\n` +
+                          `WhatsApp: ${phone}\n` +
+                          `Empresa: ${company}\n` +
+                          `Serviço Base: ${service.toUpperCase()}\n` +
+                          `Demanda: ${demand}\n` +
+                          `Objetivo: ${objective}\n` +
+                          `Observações: ${notes}`;
+
+            const waUrl = `https://wa.me/5511999999999?text=${encodeURIComponent(message)}`;
+            window.location.href = waUrl;
         });
     </script>
 </body>
