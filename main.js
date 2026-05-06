@@ -143,7 +143,7 @@ const handleBotResponse = (userText) => {
             waBtn.innerHTML = '<i data-lucide="message-circle"></i> Finalizar via WhatsApp';
             waBtn.onclick = () => {
                 const msg = `Protocolo de Escala - Lead Chatbot\n\nNome: ${leadData.name}\nWhatsApp: ${leadData.phone}\nInteresse: Atendimento via Site`;
-                window.open(`https://wa.me/5511999999999?text=${encodeURIComponent(msg)}`, '_blank');
+                window.open(`https://wa.me/5534999929764?text=${encodeURIComponent(msg)}`, '_blank');
             };
             chatMessages.appendChild(waBtn);
             lucide.createIcons();
