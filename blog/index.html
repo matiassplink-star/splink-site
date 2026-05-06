@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radar Splink - Inteligência por Marco Matias</title>
+    <meta name="description" content="Insights estratégicos sobre IA e automação massiva. O radar da economia digital.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../index.css">
+    <style>
+        :root { --accent-blue: #00d4ff; --bg-deep: #050506; --max-width-expansive: 1400px; }
+        body { background-color: var(--bg-deep); font-family: 'Inter', sans-serif; }
+
+        .header-nav { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 30px 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .nav-wrapper { max-width: var(--max-width-expansive); margin: 0 auto; padding: 0 40px; display: flex; justify-content: space-between; align-items: center; }
+
+        .hero-section { padding-top: 180px; padding-bottom: 100px; max-width: var(--max-width-expansive); margin: 0 auto; padding-left: 40px; padding-right: 40px; }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        @media (max-width: 1000px) { .hero-grid { grid-template-columns: 1fr; text-align: center; } .hero-image-block { order: -1; } }
+
+        .main-title { font-size: clamp(48px, 6vw, 92px); font-weight: 900; line-height: 0.9; color: white; margin-bottom: 30px; letter-spacing: -4px; }
+        .main-title span { color: transparent; -webkit-text-stroke: 1px rgba(0, 212, 255, 0.4); }
+
+        .post-card-premium { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-bottom: 100px; transition: opacity 0.4s ease; }
+        @media (max-width: 900px) { .post-card-premium { grid-template-columns: 1fr; gap: 30px; } }
+        
+        .post-thumb { aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
+        .post-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .post-card-premium:hover .post-thumb img { transform: scale(1.05); }
+
+        .post-info h2 { font-size: 32px; color: white; margin-bottom: 20px; font-weight: 800; line-height: 1.1; }
+        .post-info p { color: var(--text-secondary); line-height: 1.6; margin-bottom: 24px; }
+
+        /* Hidden scheduled posts */
+        .scheduled-post { display: none; }
+        .scheduled-post.live { display: grid; }
+    </style>
+</head>
+<body>
+    <nav class="header-nav">
+        <div class="nav-wrapper">
+            <a href="../index.html" class="splink-logo"><div class="logo-symbol"><i data-lucide="zap"></i></div><div class="logo-text">SPLINK<span>.</span></div></a>
+            <div style="display: flex; gap: 40px; align-items: center;">
+                <a href="../index.html" style="color: white; text-decoration: none; font-size: 11px; letter-spacing: 2px;">SITES</a>
+                <a href="../questionario.html" class="btn btn-primary" style="padding: 10px 25px; font-size: 11px; border-radius: 4px;">CONSULTORIA IA</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="hero-grid">
+            <div class="hero-text">
+                <span style="font-size: 11px; letter-spacing: 3px; color: var(--accent-blue); font-weight: 800; text-transform: uppercase;">Radar de Inteligência</span>
+                <h1 class="main-title">RADAR<span>SPLINK</span></h1>
+                <p style="font-size: 18px; color: var(--text-secondary); max-width: 500px;">Decifrando a nova economia da Inteligência Artificial por <strong>Marco Matias</strong>.</p>
+            </div>
+            <div class="hero-image-block" style="text-align: right;">
+                <img src="../Criar_um_foto_profssional_porfavor_202605051827 (1).jpeg" style="width: 300px; height: 300px; border-radius: 30px; object-fit: cover; border: 1px solid rgba(255,255,255,0.1);">
+            </div>
+        </div>
+    </header>
+
+    <main class="container" style="max-width: var(--max-width-expansive); padding: 0 40px;">
+        <h3 style="font-size: 11px; letter-spacing: 5px; color: rgba(255,255,255,0.2); text-transform: uppercase; margin-bottom: 60px;">Protocolos Ativos</h3>
+        
+        <div id="postsGrid">
+            <!-- POST 01: WHATSAPP IA (HOJE) -->
+            <article class="post-card-premium scheduled-post" data-date="2026-05-06">
+                <div class="post-thumb"><img src="assets/guia-whatsapp-ia.png"></div>
+                <div class="post-info">
+                    <span class="tag">Escala & IA</span>
+                    <h2>O Guia Definitivo da Automação de WhatsApp com IA</h2>
+                    <p>Como o Agentic AI e a nova infraestrutura da Meta estão redefinindo o ROI das vendas globais.</p>
+                    <a href="guia-automacao-whatsapp-ia.html" class="btn btn-secondary">LER ARTIGO</a>
+                </div>
+            </article>
+
+            <!-- POST 02: OLX (HOJE) -->
+            <article class="post-card-premium scheduled-post" data-date="2026-05-06">
+                <div class="post-thumb"><img src="assets/olx-extractor.png"></div>
+                <div class="post-info">
+                    <span class="tag">Extração</span>
+                    <h2>Como Extrair Leads Infinitos da OLX em 2026</h2>
+                    <p>O guia para imobiliárias e RH sobre como dominar a prospecção massiva na OLX.</p>
+                    <a href="guia-extracao-olx.html" class="btn btn-secondary">LER ARTIGO</a>
+                </div>
+            </article>
+
+            <!-- POST 03: GOOGLE MAPS (HOJE) -->
+            <article class="post-card-premium scheduled-post" data-date="2026-05-06">
+                <div class="post-thumb"><img src="assets/google-maps.png"></div>
+                <div class="post-info">
+                    <span class="tag">B2B</span>
+                    <h2>Inteligência Competitiva com Google Maps</h2>
+                    <p>Aprenda a mapear o mercado e prospectar clientes B2B com precisão cirúrgica.</p>
+                    <a href="inteligencia-google-maps.html" class="btn btn-secondary">LER ARTIGO</a>
+                </div>
+            </article>
+
+            <!-- POST 04: CRM IA (HOJE) -->
+            <article class="post-card-premium scheduled-post" data-date="2026-05-06">
+                <div class="post-thumb"><img src="assets/crm-ia.png"></div>
+                <div class="post-info">
+                    <span class="tag">Vendas</span>
+                    <h2>Por que seu CRM precisa de IA em 2026</h2>
+                    <p>A transição do CRM passivo para o agêntico: automatize o fechamento sem perder a humanidade.</p>
+                    <a href="crm-ia-vendas.html" class="btn btn-secondary">LER ARTIGO</a>
+                </div>
+            </article>
+
+            <!-- POST 05: TRAFEGO (HOJE) -->
+            <article class="post-card-premium scheduled-post" data-date="2026-05-06">
+                <div class="post-thumb"><img src="assets/trafego-pago.png"></div>
+                <div class="post-info">
+                    <span class="tag">Escala</span>
+                    <h2>Escala Massiva: ROI de Elite em Tráfego Pago</h2>
+                    <p>Dominando o Meta Ads e Google Ads com foco total em conversão no WhatsApp.</p>
+                    <a href="escala-trafego-pago.html" class="btn btn-secondary">LER ARTIGO</a>
+                </div>
+            </article>
+
+            <!-- AGENDADOS -->
+            <article class="post-card-premium scheduled-post" data-date="2026-05-09">
+                <div class="post-thumb"><img src="assets/luxury-real-estate.png"></div>
+                <div class="post-info"><h2>Imóveis de Luxo: Vendas High-Ticket pelo WhatsApp</h2><p>Estratégias de exclusividade para o mercado imobiliário premium.</p><a href="venda-imoveis-luxo-whatsapp.html" class="btn btn-secondary">LER ARTIGO</a></div>
+            </article>
+
+            <article class="post-card-premium scheduled-post" data-date="2026-05-12">
+                <div class="post-thumb"><img src="assets/ecommerce-recovery.png"></div>
+                <div class="post-info"><h2>Recuperação de Carrinho com IA no E-commerce</h2><p>Recupere até 40% das vendas perdidas com diálogos automatizados.</p><a href="recuperacao-carrinho-ecommerce-ia.html" class="btn btn-secondary">LER ARTIGO</a></div>
+            </article>
+
+            <article class="post-card-premium scheduled-post" data-date="2026-05-15">
+                <div class="post-thumb"><img src="assets/whatsapp-safety.png"></div>
+                <div class="post-info"><h2>Manual Definitivo Anti-Ban WhatsApp 2026</h2><p>Segurança máxima para suas operações de escala massiva.</p><a href="manual-anti-ban-whatsapp.html" class="btn btn-secondary">LER ARTIGO</a></div>
+            </article>
+
+            <article class="post-card-premium scheduled-post" data-date="2026-05-18">
+                <div class="post-thumb"><img src="assets/linkedin-b2b.png"></div>
+                <div class="post-info"><h2>Prospecção B2B LinkedIn + WhatsApp</h2><p>O funil imparável para atingir decisores e fechar contratos.</p><a href="prospeccao-linkedin-b2b.html" class="btn btn-secondary">LER ARTIGO</a></div>
+            </article>
+
+            <article class="post-card-premium scheduled-post" data-date="2026-05-21">
+                <div class="post-thumb"><img src="assets/copywriting-sales.png"></div>
+                <div class="post-info"><h2>Copywriting para WhatsApp: Palavras que Vendem</h2><p>Gatilhos mentais e scripts para conversão instantânea no chat.</p><a href="copywriting-vendas-whatsapp.html" class="btn btn-secondary">LER ARTIGO</a></div>
+            </article>
+
+            <article class="post-card-premium scheduled-post" data-date="2026-05-24">
+                <div class="post-thumb"><img src="assets/ai-sdr-personality.png"></div>
+                <div class="post-info"><h2>Treinando sua IA SDR: Tom de Voz Perfeito</h2><p>Como dar personalidade e humanidade ao seu robô de vendas.</p><a href="treinamento-ia-sdr-personalidade.html" class="btn btn-secondary">LER ARTIGO</a></div>
+            </article>
+
+            <article class="post-card-premium scheduled-post" data-date="2026-05-27">
+                <div class="post-thumb"><img src="assets/lgpd-privacy.png"></div>
+                <div class="post-info"><h2>LGPD no Marketing Conversacional</h2><p>Conformidade e ética na escala massiva de dados.</p><a href="lgpd-marketing-conversacional.html" class="btn btn-secondary">LER ARTIGO</a></div>
+            </article>
+
+            <article class="post-card-premium scheduled-post" data-date="2026-05-30">
+                <div class="post-thumb"><img src="assets/multimodal-whatsapp.png"></div>
+                <div class="post-info"><h2>O Futuro: WhatsApp Multimodal e Vídeo-IA</h2><p>A nova fronteira das mensagens de áudio e vídeo personalizadas.</p><a href="futuro-whatsapp-multimodal.html" class="btn btn-secondary">LER ARTIGO</a></div>
+            </article>
+        </div>
+    </main>
+
+    <footer style="padding: 100px 0; border-top: 1px solid rgba(255,255,255,0.05); text-align: center;">
+        <p style="font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 3px;">RADAR SPLINK © 2026 // TECNOLOGIA DE ELITE</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // LÓGICA DE AGENDAMENTO
+        const today = new Date();
+        const posts = document.querySelectorAll('.scheduled-post');
+
+        posts.forEach(post => {
+            const postDate = new Date(post.getAttribute('data-date'));
+            if (today >= postDate) {
+                post.classList.add('live');
+            }
+        });
+    </script>
+</body>
+</html>
