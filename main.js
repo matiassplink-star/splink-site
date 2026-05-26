@@ -201,7 +201,7 @@ if (matrixCanvas) {
     const drops = [];
     for (let x = 0; x < columns; x++) drops[x] = 1;
 
-    let matrixSpeed = 300; 
+    let matrixSpeed = 30; // Fast and smooth from the start
     let lastDrawTime = 0;
     
     // Evita múltiplas instâncias se o script rodar mais de uma vez
@@ -223,131 +223,12 @@ if (matrixCanvas) {
             if (drops[i] * fontSize > matrixCanvas.height && Math.random() > 0.975) drops[i] = 0;
             drops[i]++;
         }
-        
-        if (matrixSpeed > 33) {
-            matrixSpeed -= 2; 
-        }
     }
     window.matrixAnimId = requestAnimationFrame(drawMatrix);
     window.addEventListener('resize', () => {
         matrixCanvas.width = window.innerWidth;
         matrixCanvas.height = window.innerHeight;
         columns = matrixCanvas.width / fontSize;
-    });
-}
-
-// 2. Cinematic Shutter Transition Overlay
-if (!document.getElementById('warp-overlay')) {
-    const overlay = document.createElement('div');
-    overlay.id = 'warp-overlay';
-    overlay.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; pointer-events: none; display: flex; flex-direction: column; justify-content: space-between;';
-    overlay.innerHTML = `
-        <div id="shutter-top" style="width: 100%; height: 50%; background: #050506; transition: height 0.6s cubic-bezier(0.86, 0, 0.07, 1); border-bottom: 2px solid var(--accent);"></div>
-        <div id="shutter-bottom" style="width: 100%; height: 50%; background: #050506; transition: height 0.6s cubic-bezier(0.86, 0, 0.07, 1); border-top: 2px solid var(--accent);"></div>
-    `;
-    document.body.appendChild(overlay);
-    
-    // Animação de saída se estiver carregando uma nova página
-    function openShutters() {
-        const top = document.getElementById('shutter-top');
-        const bottom = document.getElementById('shutter-bottom');
-        if(top && bottom) {
-            top.style.height = '0%';
-            bottom.style.height = '0%';
-        }
-    }
-
-    window.addEventListener('load', () => {
-        const isHome = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/');
-        
-        if (!sessionStorage.getItem('splinkFirstVisit') && isHome) {
-            // Cria a tela de Boot Inicial Automática
-            const bootScreen = document.createElement('div');
-            bootScreen.id = 'boot-screen';
-            bootScreen.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--accent); font-family: monospace; transition: opacity 0.5s ease;';
-            
-            bootScreen.innerHTML = `
-                <div id="boot-terminal-window" style="width: 90%; max-width: 600px; background: rgba(5,5,6,0.95); border: 1px solid var(--accent); border-radius: 8px; overflow: hidden; box-shadow: 0 0 30px rgba(0,212,255,0.15);">
-                    <div style="background: rgba(0,212,255,0.1); border-bottom: 1px solid var(--accent); padding: 10px; display: flex; gap: 8px; align-items: center;">
-                        <div style="width: 12px; height: 12px; border-radius: 50%; background: #ff5f56; opacity: 0.8;"></div>
-                        <div style="width: 12px; height: 12px; border-radius: 50%; background: #ffbd2e; opacity: 0.8;"></div>
-                        <div style="width: 12px; height: 12px; border-radius: 50%; background: #27c93f; opacity: 0.8;"></div>
-                        <div style="flex: 1; text-align: center; color: var(--accent); font-size: 12px; letter-spacing: 2px;">ROOT@SPLINK_SYS:~</div>
-                    </div>
-                    <div style="padding: 20px; font-size: 14px; line-height: 1.6; min-height: 220px; display: flex; flex-direction: column;">
-                        <div id="boot-logs" style="color: #ccc; flex: 1;"></div>
-                        
-                        <div id="boot-progress-container" style="display: none; margin-top: 20px;">
-                            <div style="margin-bottom: 8px; color: var(--accent); text-transform: uppercase; letter-spacing: 1px;">Protocolo Hacking I.A Business...</div>
-                            <div style="width: 100%; height: 2px; background: rgba(0,212,255,0.2); position: relative; overflow: hidden;">
-                                <div id="boot-progress-bar" style="position: absolute; top: 0; left: 0; height: 100%; width: 0%; background: var(--accent); box-shadow: 0 0 10px var(--accent);"></div>
-                            </div>
-                            <div id="boot-percentage" style="text-align: right; margin-top: 5px; font-size: 12px; color: var(--accent);">0%</div>
-                        </div>
-
-                        <div id="boot-success" style="display: none; color: #10b981; font-weight: bold; font-size: 18px; margin-top: 20px; text-shadow: 0 0 10px rgba(16,185,129,0.5); letter-spacing: 2px;">ACESSO LIBERADO_</div>
-                    </div>
-                </div>
-            `;
-            document.body.appendChild(bootScreen);
-
-            // Tenta iniciar a música automaticamente (pode ser bloqueado pelo browser)
-            if(typeof startBgAudio === 'function') startBgAudio();
-            
-            const logsContainer = document.getElementById('boot-logs');
-            const progressContainer = document.getElementById('boot-progress-container');
-            const progressBar = document.getElementById('boot-progress-bar');
-            const progressText = document.getElementById('boot-percentage');
-            const successMsg = document.getElementById('boot-success');
-            
-            const bootLogs = [
-                "Inicializando sistema base...",
-                "Bypass de segurança firewalls locais...",
-                "Sincronizando Módulo de I.A...",
-                "Estabelecendo conexão segura..."
-            ];
-            
-            let logIndex = 0;
-            const printLog = () => {
-                if (logIndex < bootLogs.length) {
-                    logsContainer.innerHTML += `<div>> ${bootLogs[logIndex]}</div>`;
-                    if(typeof playClickSound === 'function') playClickSound();
-                    logIndex++;
-                    setTimeout(printLog, Math.random() * 80 + 30);
-                } else {
-                    // Iniciar barra de progresso
-                    progressContainer.style.display = 'block';
-                    let progress = 0;
-                    const fillBar = setInterval(() => {
-                        progress += Math.floor(Math.random() * 30) + 20;
-                        if (progress > 100) progress = 100;
-                        progressBar.style.width = progress + '%';
-                        progressText.innerText = progress + '%';
-                        
-                        if (progress === 100) {
-                            clearInterval(fillBar);
-                            if(typeof playClickSound === 'function') playClickSound();
-                            successMsg.style.display = 'block';
-                            
-                            setTimeout(() => {
-                                bootScreen.style.opacity = '0';
-                                setTimeout(() => {
-                                    bootScreen.remove();
-                                    sessionStorage.setItem('splinkFirstVisit', 'true');
-                                    openShutters();
-                                }, 500);
-                            }, 1000);
-                        }
-                    }, 100);
-                }
-            };
-            
-            setTimeout(printLog, 300);
-
-        } else {
-            // Fluxo normal
-            setTimeout(openShutters, 100);
-        }
     });
 }
 
@@ -366,75 +247,3 @@ setInterval(() => {
         }
     });
 }, 400);
-
-// 3. Cybernetic Click Sound
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-function playClickSound() {
-    if (audioCtx.state === 'suspended') audioCtx.resume();
-    const oscillator = audioCtx.createOscillator();
-    const gainNode = audioCtx.createGain();
-    oscillator.type = 'square';
-    oscillator.frequency.setValueAtTime(800, audioCtx.currentTime);
-    oscillator.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.1);
-    gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
-    oscillator.connect(gainNode);
-    gainNode.connect(audioCtx.destination);
-    oscillator.start();
-    oscillator.stop(audioCtx.currentTime + 0.1);
-}
-
-// 4. Continuous Audio Logic
-const bgAudio = new Audio('hitslab-cyberpunk-futuristic-cyberpunk-industrial-music-474697.mp3');
-bgAudio.loop = true;
-const isHome = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/');
-bgAudio.volume = isHome ? 0.15 : 0.10;
-
-const savedTime = sessionStorage.getItem('splinkAudioTime');
-if (savedTime) bgAudio.currentTime = parseFloat(savedTime);
-
-let audioStarted = false;
-const startBgAudio = () => {
-    if(audioStarted && !bgAudio.paused) return;
-    bgAudio.play().then(() => {
-        audioStarted = true;
-    }).catch(e => {
-        console.log("Browser bloqueou autoplay. Aguardando interação.");
-    });
-};
-
-// Força o play imediato
-startBgAudio();
-
-// Fallback: se o browser bloquear, tenta no primeiro clique/scroll
-['click', 'touchstart', 'scroll'].forEach(evt => {
-    document.body.addEventListener(evt, startBgAudio, { once: true });
-});
-
-setInterval(() => {
-    if (!bgAudio.paused) sessionStorage.setItem('splinkAudioTime', bgAudio.currentTime);
-}, 500);
-
-// 5. Global Click Interception
-document.addEventListener('click', (e) => {
-    const link = e.target.closest('a');
-    const isServiceOrBtn = e.target.closest('.option-card, .service-card, .btn') || (link && !link.getAttribute('href').startsWith('#'));
-    
-    if (isServiceOrBtn) playClickSound();
-
-    if (link && link.getAttribute('href') && !link.getAttribute('href').startsWith('#') && !link.getAttribute('target')) {
-        e.preventDefault();
-        const targetUrl = link.getAttribute('href');
-        
-        // Ativa o Shutter Cinematográfico
-        const top = document.getElementById('shutter-top');
-        const bottom = document.getElementById('shutter-bottom');
-        if (top && bottom) {
-            top.style.height = '50%';
-            bottom.style.height = '50%';
-        }
-        
-        sessionStorage.setItem('splinkAudioTime', bgAudio.currentTime);
-        setTimeout(() => window.location.href = targetUrl, 500); // Mais rápido para parecer cena de filme
-    }
-});
