@@ -201,7 +201,7 @@ if (matrixCanvas) {
     const drops = [];
     for (let x = 0; x < columns; x++) drops[x] = 1;
 
-    let matrixSpeed = 30; // Fast and smooth from the start
+    let matrixSpeed = 300; 
     let lastDrawTime = 0;
     
     // Evita múltiplas instâncias se o script rodar mais de uma vez
@@ -222,6 +222,10 @@ if (matrixCanvas) {
             ctx.fillText(text, i * fontSize, drops[i] * fontSize);
             if (drops[i] * fontSize > matrixCanvas.height && Math.random() > 0.975) drops[i] = 0;
             drops[i]++;
+        }
+        
+        if (matrixSpeed > 33) {
+            matrixSpeed -= 2; 
         }
     }
     window.matrixAnimId = requestAnimationFrame(drawMatrix);

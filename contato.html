@@ -232,6 +232,19 @@
             updateProgress();
         }
 
+        // CONFIGURAÇÃO DE INTEGRAÇÃO DE LEADS (SPLINK AUTOMATIONS)
+        const LEAD_CONFIG = {
+            // Insira seu Webhook do n8n, Make, Zapier ou seu CRM aqui para receber em tempo real
+            webhookUrl: '', 
+            
+            // Caso queira receber por e-mail via Web3Forms de forma 100% gratuita:
+            // Pegue sua chave grátis em https://web3forms.com/ e insira abaixo
+            web3formsAccessKey: '', 
+            
+            // E-mail onde você deseja receber as notificações de leads
+            emailDestino: 'contato@splinkapp.com.br'
+        };
+
         document.getElementById('quizForm').addEventListener('submit', (e) => {
             e.preventDefault();
             
@@ -241,23 +254,60 @@
             const instagram = document.getElementById('instagram').value;
             const revenue = document.getElementById('revenue').value;
 
-            const message = `ANÁLISE DE NEGÓCIO - LEAD SITE\n\n` +
-                          `Nome: ${name}\n` +
-                          `E-mail: ${email}\n` +
-                          `Site: ${site}\n` +
-                          `Instagram: ${instagram}\n` +
-                          `Faturamento: ${revenue}`;
+            const payload = {
+                form_type: 'Análise de Negócio - Lead Site',
+                name: name,
+                email: email,
+                site: site,
+                instagram: instagram,
+                revenue: revenue
+            };
 
-            const waUrl = `https://wa.me/5534999929764?text=${encodeURIComponent(message)}`;
-            
+            // Transiciona a interface para o status de sucesso imediatamente (sem travar ou redirecionar)
             document.getElementById(`step${currentStep}`).classList.remove('active');
             document.getElementById('stepSuccess').classList.add('active');
             document.getElementById('progress').style.width = '100%';
-            
-            // Redireciona após 2 segundos para o usuário ver a mensagem de sucesso
-            setTimeout(() => {
-                window.location.href = waUrl;
-            }, 2000);
+
+            // 1. Envia para o seu Webhook (n8n/Make/CRM) caso esteja configurado
+            if (LEAD_CONFIG.webhookUrl) {
+                fetch(LEAD_CONFIG.webhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                }).catch(err => console.log('Erro ao enviar para o Webhook:', err));
+            }
+
+            // 2. Envia por E-mail silenciosamente via Web3Forms caso a chave esteja configurada
+            if (LEAD_CONFIG.web3formsAccessKey) {
+                const emailPayload = {
+                    access_key: LEAD_CONFIG.web3formsAccessKey,
+                    subject: 'Novo Diagnóstico - Análise de Negócio Splink',
+                    from_name: 'Splink Leads Bot',
+                    to_email: LEAD_CONFIG.emailDestino,
+                    ...payload
+                };
+                
+                fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(emailPayload)
+                }).catch(err => console.log('Erro ao enviar e-mail:', err));
+            }
+
+            // 3. Fallback: Envia por E-mail de forma automática e gratuita se nenhuma outra integração estiver ativa
+            if (!LEAD_CONFIG.webhookUrl && !LEAD_CONFIG.web3formsAccessKey && LEAD_CONFIG.emailDestino) {
+                fetch(`https://formsubmit.co/ajax/${LEAD_CONFIG.emailDestino}`, {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        _subject: 'Novo Lead - Análise de Negócio (Site Splink)',
+                        ...payload
+                    })
+                }).catch(err => console.log('Erro no envio padrão:', err));
+            }
         });
 
         // Enter key to next step

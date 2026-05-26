@@ -9,7 +9,7 @@ def minify_css(css):
 
 def minify_js(js):
     # Very basic minification: remove comments and extra whitespace
-    js = re.sub(r'//.*', '', js) # Remove single line comments
+    js = re.sub(r'(?<!:)\/\/.*', '', js) # Remove single line comments
     js = re.sub(r'/\*.*?\*/', '', js, flags=re.DOTALL) # Remove multi-line comments
     js = re.sub(r'\s+', ' ', js) # Collapse whitespace
     return js.strip()

@@ -265,6 +265,14 @@
                         <button type="submit" class="btn btn-primary btn-nav" style="background: var(--accent-gradient);">Enviar Diagnóstico <i data-lucide="check"></i></button>
                     </div>
                 </div>
+
+                <!-- Passo 7: Sucesso -->
+                <div class="step-container success-message" data-step="7" style="text-align: center;">
+                    <i data-lucide="shield-check" style="width: 80px; height: 80px; color: var(--accent); margin-bottom: 24px; filter: drop-shadow(0 0 10px rgba(0,212,255,0.5)); display: inline-block;"></i>
+                    <div class="question-label" style="font-family: monospace; text-shadow: 0 0 10px rgba(0,212,255,0.3); text-align: center; margin-bottom: 20px;">DIAGNÓSTICO ENVIADO</div>
+                    <p style="color: rgba(255,255,255,0.7); font-family: monospace; letter-spacing: 1px; font-size: 15px; margin-bottom: 30px; line-height: 1.6;">Nossos agentes estão processando seus dados criptografados. Faremos contato em breve por e-mail ou WhatsApp.</p>
+                    <a href="index.html" class="btn btn-secondary" style="font-family: monospace; padding: 14px 28px; width: 100%;">ENCERRAR CONEXÃO</a>
+                </div>
             </form>
         </div>
     </div>
@@ -482,6 +490,19 @@
             document.getElementById('val' + step).value = value;
         }
 
+        // CONFIGURAÇÃO DE INTEGRAÇÃO DE LEADS (SPLINK AUTOMATIONS)
+        const LEAD_CONFIG = {
+            // Insira seu Webhook do n8n, Make, Zapier ou seu CRM aqui para receber em tempo real
+            webhookUrl: '', 
+            
+            // Caso queira receber por e-mail via Web3Forms de forma 100% gratuita:
+            // Pegue sua chave grátis em https://web3forms.com/ e insira abaixo
+            web3formsAccessKey: '', 
+            
+            // E-mail onde você deseja receber as notificações de leads
+            emailDestino: 'contato@splinkapp.com.br'
+        };
+
         document.getElementById('multiStepForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -492,17 +513,63 @@
             const objective = document.getElementById('val5').value;
             const notes = document.getElementById('userNotes').value;
 
-            const message = `SOLICITAÇÃO DE DIAGNÓSTICO ESTRATÉGICO\n\n` +
-                          `Nome: ${name}\n` +
-                          `WhatsApp: ${phone}\n` +
-                          `Empresa: ${company}\n` +
-                          `Serviço Base: ${service.toUpperCase()}\n` +
-                          `Demanda: ${demand}\n` +
-                          `Objetivo: ${objective}\n` +
-                          `Observações: ${notes}`;
+            const payload = {
+                form_type: 'Solicitação de Diagnóstico Estratégico',
+                name: name,
+                phone: phone,
+                company: company,
+                service_base: service.toUpperCase(),
+                demand: demand,
+                objective: objective,
+                notes: notes
+            };
 
-            const waUrl = `https://wa.me/5534999929764?text=${encodeURIComponent(message)}`;
-            window.location.href = waUrl;
+            // Transiciona a interface para o status de sucesso imediatamente
+            document.querySelector(`[data-step="${currentStep}"]`).classList.remove('active');
+            currentStep = 7;
+            document.querySelector(`[data-step="7"]`).classList.add('active');
+            document.getElementById('progress').style.width = '100%';
+
+            // 1. Envia para o seu Webhook (n8n/Make/CRM) caso esteja configurado
+            if (LEAD_CONFIG.webhookUrl) {
+                fetch(LEAD_CONFIG.webhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                }).catch(err => console.log('Erro ao enviar para o Webhook:', err));
+            }
+
+            // 2. Envia por E-mail silenciosamente via Web3Forms caso a chave esteja configurada
+            if (LEAD_CONFIG.web3formsAccessKey) {
+                const emailPayload = {
+                    access_key: LEAD_CONFIG.web3formsAccessKey,
+                    subject: `Novo Lead [Diagnóstico: ${service.toUpperCase()}] - Splink`,
+                    from_name: 'Splink Leads Bot',
+                    to_email: LEAD_CONFIG.emailDestino,
+                    ...payload
+                };
+                
+                fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(emailPayload)
+                }).catch(err => console.log('Erro ao enviar e-mail:', err));
+            }
+
+            // 3. Fallback: Envia por E-mail de forma automática e gratuita se nenhuma outra integração estiver ativa
+            if (!LEAD_CONFIG.webhookUrl && !LEAD_CONFIG.web3formsAccessKey && LEAD_CONFIG.emailDestino) {
+                fetch(`https://formsubmit.co/ajax/${LEAD_CONFIG.emailDestino}`, {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        _subject: `Novo Lead [Diagnóstico: ${service.toUpperCase()}] - Splink`,
+                        ...payload
+                    })
+                }).catch(err => console.log('Erro no envio padrão:', err));
+            }
         });
     </script>
 </body>
