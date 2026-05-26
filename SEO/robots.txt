@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://splinkapp.com.br/seo/sitemap.xml
