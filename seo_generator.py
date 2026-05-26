@@ -416,7 +416,7 @@ def get_html_template(keyword, service_raw, location_raw, slug, neighbors_links,
     <nav class="navbar-landing">
         <a href="../index.html" class="splink-logo logo-large">
             <div class="logo-symbol">
-                <i data-lucide="zap"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #000000; display: block;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
             </div>
             <div class="logo-text">SPLINK<span>.</span></div>
         </a>
@@ -510,7 +510,7 @@ def get_html_template(keyword, service_raw, location_raw, slug, neighbors_links,
             <div style="display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 600px; margin: 0 auto;">
                 <a href="../index.html" class="splink-logo logo-large" style="margin-bottom: 24px;">
                     <div class="logo-symbol">
-                        <i data-lucide="zap"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #000000; display: block;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                     </div>
                     <div class="logo-text">SPLINK<span>.</span></div>
                 </a>
