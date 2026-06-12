@@ -18,6 +18,7 @@ import os
 import csv
 import argparse
 import re
+import unicodedata
 from xml.sax.saxutils import escape as xml_escape
 
 # ──────────────────────────────────────────
@@ -43,6 +44,113 @@ SERVICE_DISPLAY_NAMES = {
     "tráfego pago": "Tráfego Pago e Gestão de Anúncios",
     "api de disparo whatsapp": "API de Disparo e Integração WhatsApp",
 }
+
+# Helper for accent-insensitive text normalization
+def normalize_text(text):
+    if not text:
+        return ""
+    text = unicodedata.normalize('NFD', text)
+    text = ''.join(c for c in text if unicodedata.category(c) != 'Mn')
+    return text.lower().strip()
+
+# Pattern mapping to services using normalized keys
+SERVICE_PATTERNS = {
+    "automacao-de-whatsapp": [
+        "automacao de whatsapp", "automacao whatsapp", "automatizar whatsapp", "automacoes de whatsapp"
+    ],
+    "disparo-de-whatsapp-em-massa": [
+        "disparo de whatsapp em massa", "disparo de whatsapp", "disparos em massa", "disparo em massa", "disparos de whatsapp"
+    ],
+    "chatbot-whatsapp-com-ia": [
+        "chatbot whatsapp com ia", "chatbot whatsapp", "chatbot de whatsapp", "bot whatsapp", "robo whatsapp", "chatbot com ia"
+    ],
+    "agente-sdr-inteligente": [
+        "agente sdr inteligente", "agente sdr", "sdr inteligente", "sdr de ia", "sdr whatsapp", "agente sdr ia"
+    ],
+    "crm-integrated-whatsapp": [
+        "crm integrado whatsapp", "crm integrado ao whatsapp", "crm whatsapp", "crm com landing pages", "crm landing page"
+    ],
+    "extracao-de-leads": [
+        "extracao de leads", "extrator de leads", "extrator olx", "olx extractor", "extrator google maps", "extracao de contatos"
+    ],
+    "criacao-de-sites": [
+        "criacao de sites", "criacao de site", "criar site", "desenvolvimento de sites", 
+        "desenvolvimento de site", "construcao de sites", "site profissional", "sites responsivos",
+        "desenvolvimento sites", "desenvolvimento de website", "criacao de websites"
+    ],
+    "landing-page-de-alta-conversao": [
+        "landing page de alta conversao", "landing page", "landing pages", "criar landing page", "criacao de landing page"
+    ],
+    "trafego-pago": [
+        "trafego pago", "gestao de trafego", "gestor de trafego", "agencia de trafego", 
+        "anuncios online", "escola de trafego", "curso de trafego"
+    ],
+    "api-de-disparo-whatsapp": [
+        "api de disparo whatsapp", "api whatsapp", "api de disparo", "link api", "disparo em massa whatsapp api"
+    ]
+}
+
+# Maps standard pattern keys to the actual keys in SERVICE_DISPLAY_NAMES and FAQ_DATA
+SERVICE_KEY_MAP = {
+    "automacao-de-whatsapp": "automação de whatsapp",
+    "disparo-de-whatsapp-em-massa": "disparo de whatsapp em massa",
+    "chatbot-whatsapp-com-ia": "chatbot whatsapp com ia",
+    "agente-sdr-inteligente": "agente sdr inteligente",
+    "crm-integrated-whatsapp": "crm integrado whatsapp",
+    "extracao-de-leads": "extração de leads",
+    "criacao-de-sites": "criação de sites",
+    "landing-page-de-alta-conversao": "landing page de alta conversão",
+    "trafego-pago": "tráfego pago",
+    "api-de-disparo-whatsapp": "api de disparo whatsapp"
+}
+
+# Location mappings: normalized string -> correctly accented and capitalized display name
+LOCATION_MAPPING = {
+    "sao paulo": "São Paulo",
+    "rio de janeiro": "Rio de Janeiro",
+    "belo horizonte": "Belo Horizonte",
+    "curitiba": "Curitiba",
+    "porto alegre": "Porto Alegre",
+    "brasilia": "Brasília",
+    "salvador": "Salvador",
+    "fortaleza": "Fortaleza",
+    "recife": "Recife",
+    "campinas": "Campinas",
+    "londrina": "Londrina",
+    "florianopolis": "Florianópolis",
+    "goiania": "Goiânia",
+    "vitoria": "Vitória",
+    "joinville": "Joinville",
+    "ribeirao preto": "Ribeirão Preto",
+    "santos": "Santos",
+    "sorocaba": "Sorocaba",
+    "uberlandia": "Uberlândia",
+    "sao jose dos campos": "São José dos Campos",
+    "niteroi": "Niterói",
+    "duque de caxias": "Duque de Caxias",
+    "natal": "Natal",
+    "joao pessoa": "João Pessoa",
+    "sao luis": "São Luís",
+    "maceio": "Maceió",
+    "teresina": "Teresina",
+    "aracaju": "Aracaju",
+    "caxias do sul": "Caxias do Sul",
+    "santo andre": "Santo André",
+    "baixada santista": "Baixada Santista",
+    "brasil": "Brasil"
+}
+
+# Templates de texto do mercado local — rotaciona por índice para unicidade entre páginas
+LOCAL_MARKET_TEMPLATES = [
+    "O mercado de {location} movimenta bilhões de reais anualmente, com alta concentração de pequenas e médias empresas em crescimento. A competitividade local exige automação de atendimento e captação para se destacar da concorrência.",
+    "Com população economicamente ativa em expansão, {location} representa um dos maiores mercados consumidores do Brasil. Empresas que adotam {service} saem na frente e conquistam mais clientes com menos esforço operacional.",
+    "O ecossistema empresarial de {location} está se digitalizando em ritmo acelerado. Implementar {service} agora significa capturar clientes antes da concorrência e consolidar autoridade no mercado local.",
+    "Em {location}, o WhatsApp é o principal canal de comunicação entre empresas e consumidores. Automatizar esse canal com {service} é a estratégia mais eficiente para escalar vendas sem aumentar a equipe.",
+    "Negócios em {location} que utilizam {service} registram aumento médio de 3x nas taxas de resposta e redução de 60% no tempo de qualificação de leads, segundo dados de clientes Splink na região.",
+    "O crescimento do comércio digital em {location} abriu uma janela de oportunidade para empresas que investem em {service}. Automatize agora e capture a demanda local antes que a concorrência o faça.",
+    "Empreendedores de {location} escolhem a Splink pelo suporte especializado e pela tecnologia de {service} que se adapta ao ritmo e cultura de vendas da região, garantindo resultados mensuráveis.",
+    "A Splink atende centenas de empresas em {location} com soluções de {service} que combinam inteligência artificial, automação de WhatsApp e estratégias de conversão personalizadas para o mercado local."
+]
 
 # FAQs contextualizadas para tornar o conteúdo único para o Google
 FAQ_DATA = {
@@ -166,26 +274,32 @@ def get_spun_content(service, location, idx):
     """
     Retorna variações de títulos, descrições e parágrafos de forma
     determinística baseando-se no índice do loop da página, garantindo que
-    cada uma das 1.350+ páginas seja única.
+    cada uma das 1.700+ páginas seja única.
     """
     
-    # 4 Variações de H1
+    # 8 Variações de H1
     h1_templates = [
         "Protocolo de {service} em <span>{location}</span>",
         "Sistemas de {service} para Empresas em <span>{location}</span>",
         "Ativação de {service} em <span>{location}</span>",
-        "Plataforma de {service} de Alta Performance em <span>{location}</span>"
+        "Plataforma de {service} de Alta Performance em <span>{location}</span>",
+        "Solução de {service} Especializada para <span>{location}</span>",
+        "{service} em <span>{location}</span> — Alta Conversão Garantida",
+        "Implantação de {service} em <span>{location}</span>",
+        "Otimize sua Empresa com {service} em <span>{location}</span>"
     ]
     
-    # 4 Variações de Subtítulo do Hero
+    # 6 Variações de Subtítulo do Hero
     subtitle_templates = [
         "Otimize o atendimento do seu negócio em {location} com nosso protocolo avançado de {service}. Esqueça processos manuais e perdas de leads: a arquitetura de escala da Splink trabalha no piloto automático estruturando seu funil de vendas local.",
         "Procurando alavancar suas conversões de vendas com {service} em {location}? A Splink conecta robôs inteligentes de Inteligência Artificial e automações estáveis diretamente ao seu WhatsApp para qualificar e fechar negócios 24 horas por dia.",
         "Precisa de {service} com alta segurança e sem fricção na região de {location}? Nós da Splink implantamos soluções personalizadas de disparos massivos, SDRs inteligentes e CRM que eliminam gargalos operacionais e multiplicam seu ROI.",
-        "Impulsione a captação de novos clientes locais implantando o sistema de {service} em {location}. Nossa tecnologia conecta bots integrados de IA Generativa de forma simples e estável para atender, engajar e receber Pix no automático."
+        "Impulsione a captação de novos clientes locais implantando o sistema de {service} em {location}. Nossa tecnologia conecta bots integrados de IA Generativa de forma simples e estável para atender, engajar e receber Pix no automático.",
+        "Estruture uma máquina de vendas previsível com {service} em {location}. Conecte robôs inteligentes de IA ao seu WhatsApp e escale sua captação de clientes locais no automático com a Splink.",
+        "Especialistas em {service} para o mercado de {location}. Nossa plataforma combina automação avançada, inteligência artificial e estratégia local para multiplicar suas conversões e reduzir custos operacionais."
     ]
     
-    # 3 Conjuntos de Cards de Diferenciais (Garante estrutura única de benefícios)
+    # 5 Conjuntos de Cards de Diferenciais (Garante estrutura única de benefícios)
     cards_templates = [
         [
             {"title": "⚡ Bypass Anti-Ban", "desc": "Utilizamos atrasos randômicos refinados, mensagens dinâmicas por tag e aquecimento integrado de chips para garantir a segurança da sua conta em {location}."},
@@ -201,6 +315,16 @@ def get_spun_content(service, location, idx):
             {"title": "🚀 Escala e Performance", "desc": "Envie mensagens em massa para listas segmentadas em {location} com tecnologia multicore que processa disparos de forma rápida."},
             {"title": "🎯 Atendimento Híbrido", "desc": "Deixe a inteligência artificial realizar o primeiro contato em {location} e transfira para um atendente humano apenas os leads quentes."},
             {"title": "📈 Otimização de ROI", "desc": "Reduza custos operacionais de suporte em {location} em até 70% e aumente suas taxas de fechamento com fluxos de engajamento."}
+        ],
+        [
+            {"title": "📱 Multicanal Integrado", "desc": "Conecte WhatsApp, Instagram e e-mail em um único painel para gerenciar todos os leads de {location} sem perder nenhuma oportunidade de venda."},
+            {"title": "🎯 Segmentação Precisa", "desc": "Crie listas segmentadas por perfil e comportamento em {location} para enviar a mensagem certa para a pessoa certa no momento ideal."},
+            {"title": "⚙️ Configuração Rápida", "desc": "Nossa equipe configura todo o ambiente de automação para {location} em menos de 48 horas, sem necessidade de conhecimento técnico da sua parte."}
+        ],
+        [
+            {"title": "🔄 Automação Contínua", "desc": "Uma vez configurado para {location}, nosso sistema trabalha 24 horas por dia, 7 dias por semana, captando e qualificando leads enquanto você dorme."},
+            {"title": "🧠 IA Conversacional", "desc": "Nossa inteligência artificial aprende com cada conversa, ficando cada vez mais eficiente em converter os leads de {location} ao longo do tempo."},
+            {"title": "💬 Suporte Especialista", "desc": "Equipe dedicada de especialistas prontos para suportar sua operação em {location}, com SLA de atendimento e consultoria estratégica mensal."}
         ]
     ]
 
@@ -278,6 +402,11 @@ def get_html_template(keyword, service_raw, location_raw, slug, neighbors_links,
         """)
         
     faq_schema = ",\n".join(faq_schema_items)
+
+    # Texto do mercado local (único por página — rotaciona por índice)
+    local_market_text = LOCAL_MARKET_TEMPLATES[idx % len(LOCAL_MARKET_TEMPLATES)].format(
+        service=service, location=location
+    )
 
     # Interlinking dinâmico
     links_html = ""
@@ -486,6 +615,35 @@ def get_html_template(keyword, service_raw, location_raw, slug, neighbors_links,
         </div>
     </section>
 
+    <!-- Mercado Local -->
+    <section class="container" style="max-width: 860px;">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <div class="tag">PRESENÇA LOCAL</div>
+            <h2>Por que {location} Precisa de {service}?</h2>
+            <p style="color: rgba(255,255,255,0.6); max-width: 700px; margin: 0 auto; font-size: 16px; line-height: 1.8;">
+                {local_market_text}
+            </p>
+        </div>
+        <div class="glass" style="padding: 24px 32px; border-radius: 24px; display: flex; flex-wrap: wrap; justify-content: space-around; align-items: flex-start;">
+            <div style="text-align: center; padding: 16px; min-width: 130px;">
+                <div style="font-size: 38px; font-weight: 800; color: var(--accent);">+500</div>
+                <div style="font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 6px;">Empresas Atendidas</div>
+            </div>
+            <div style="text-align: center; padding: 16px; min-width: 130px;">
+                <div style="font-size: 38px; font-weight: 800; color: var(--accent);">24h</div>
+                <div style="font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 6px;">Operação Contínua</div>
+            </div>
+            <div style="text-align: center; padding: 16px; min-width: 130px;">
+                <div style="font-size: 38px; font-weight: 800; color: var(--accent);">3x</div>
+                <div style="font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 6px;">Mais Conversões</div>
+            </div>
+            <div style="text-align: center; padding: 16px; min-width: 130px;">
+                <div style="font-size: 38px; font-weight: 800; color: var(--accent);">-70%</div>
+                <div style="font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 6px;">Custo Operacional</div>
+            </div>
+        </div>
+    </section>
+
     <!-- Interlinking Hub -->
     <section class="container" style="text-align: center;">
         <div style="text-align: center; margin-bottom: 40px;">
@@ -639,15 +797,20 @@ def main():
         print(f"❌ Arquivo CSV não encontrado: {args.csv}")
         return
 
-    # Lista completa de 30 localizações para correspondência
-    locations = [
-        "são paulo", "rio de janeiro", "belo horizonte", "curitiba", "porto alegre",
-        "brasília", "salvador", "fortaleza", "recife", "campinas", "londrina",
-        "florianópolis", "goiânia", "vitória", "joinville", "ribeirão preto",
-        "santos", "sorocaba", "uberlândia", "são josé dos campos", "niterói",
-        "duque de caxias", "natal", "joão pessoa", "são luís", "maceió",
-        "teresina", "aracaju", "caxias do sul", "brasil"
-    ]
+    # Prepara lookups normalizados (insensível a acentos) para matching preciso
+    service_key_patterns = []
+    for sk, pats in SERVICE_PATTERNS.items():
+        for pat in pats:
+            service_key_patterns.append((normalize_text(pat), sk))
+    # Ordena por comprimento decrescente para preferir padrões mais específicos
+    service_key_patterns.sort(key=lambda x: len(x[0]), reverse=True)
+
+    # Ordena localizações por comprimento decrescente (ex: "são josé dos campos" antes de "são paulo")
+    sorted_location_entries = sorted(
+        [(normalize_text(k), v) for k, v in LOCATION_MAPPING.items()],
+        key=lambda x: len(x[0]),
+        reverse=True
+    )
 
     # 1. Carrega dados do CSV
     with open(args.csv, "r", encoding="utf-8") as f:
@@ -656,31 +819,37 @@ def main():
             kw = row.get("keyword")
             if not kw:
                 continue
-            
-            # Identifica qual serviço e qual localidade estão na keyword de forma inteligente
+
+            kw_norm = normalize_text(kw)
+
+            # Identifica serviço via SERVICE_PATTERNS normalizado (insensível a acentos)
             service_found = None
+            for pat_norm, sk in service_key_patterns:
+                if pat_norm in kw_norm:
+                    service_found = SERVICE_KEY_MAP[sk]
+                    break
+
+            # Identifica localização via LOCATION_MAPPING normalizado
             location_found = None
-            
-            for service in SERVICE_DISPLAY_NAMES.keys():
-                if service in kw:
-                    service_found = service
+            for loc_norm, loc_display in sorted_location_entries:
+                if loc_norm in kw_norm:
+                    location_found = loc_display
                     break
-            
-            for loc in locations:
-                if loc in kw:
-                    location_found = loc
-                    break
-            
-            # Fallback se não detectar
+
+            # Fallback se não detectar (casos extremamente raros)
             if not service_found or not location_found:
                 parts = kw.split(" em ")
                 if len(parts) == 2:
-                    service_found = parts[0]
-                    location_found = parts[1]
+                    if not service_found:
+                        service_found = parts[0]
+                    if not location_found:
+                        location_found = parts[1]
                 else:
                     parts = kw.split(" ")
-                    service_found = parts[0]
-                    location_found = " ".join(parts[1:]) if len(parts) > 1 else "brasil"
+                    if not service_found:
+                        service_found = parts[0]
+                    if not location_found:
+                        location_found = " ".join(parts[1:]) if len(parts) > 1 else "brasil"
 
             slug = slugify(kw)
             pages_to_generate.append({
@@ -726,22 +895,20 @@ def main():
 
     print(f"✅ {total} arquivos HTML gerados com sucesso em '{args.output}'!")
 
-    # 3. Gerar sitemap.xml
+    # 3. Gerar sitemap.xml (apenas páginas SEO — home está no sitemap_main.xml)
+    from datetime import date
+    today = date.today().strftime("%Y-%m-%d")
     sitemap_path = os.path.join(args.output, "sitemap.xml")
     
     sitemap_content = """<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 """
-    # Inclui a Home principal do site
-    sitemap_content += f"""  <url>
-    <loc>{SITE_CONFIG['base_url']}/</loc>
-    <priority>1.0</priority>
-  </url>
-"""
-    # Inclui todas as geradas
+    # Inclui todas as páginas SEO geradas (a home / está no sitemap_main.xml)
     for url in generated_urls:
         sitemap_content += f"""  <url>
     <loc>{xml_escape(url)}</loc>
+    <lastmod>{today}</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 """
@@ -750,13 +917,8 @@ def main():
     with open(sitemap_path, "w", encoding="utf-8") as s_file:
         s_file.write(sitemap_content)
     
-    print(f"💾 sitemap.xml gerado com sucesso em '{sitemap_path}' ({total + 1} URLs)!")
-
-    # 4. Atualizar/Criar robots.txt na pasta de saída
-    robots_path = os.path.join(args.output, "robots.txt")
-    with open(robots_path, "w", encoding="utf-8") as r_file:
-        r_file.write(f"User-agent: *\nAllow: /\n\nSitemap: {SITE_CONFIG['base_url']}/seo/sitemap.xml\n")
-    print(f"💾 robots.txt gerado com sucesso em '{robots_path}'!")
+    print(f"💾 sitemap.xml gerado em '{sitemap_path}' ({total} URLs com lastmod={today})!")
+    print(f"ℹ️  A home (/) não foi incluída aqui — ela já está em sitemap_main.xml")
 
 
 if __name__ == "__main__":
