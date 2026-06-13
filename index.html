@@ -14,7 +14,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Splink - Automação de WhatsApp, IA e Marketing Digital</title>
     <meta name="description" content="Splink: Líder em Automação de WhatsApp, Agentes de IA SDR e CRM. Disparo em massa, extração de leads e soluções inteligentes para escalar seu negócio.">
-    <meta name="keywords" content="automação de whatsapp, disparo em massa, agentes de ia, sdr inteligente, crm whatsapp, marketing digital, extração de leads, chatbot whatsapp, splink, automação comercial">
     <link rel="canonical" href="https://splinkapp.com.br/">
     <link rel="icon" type="image/png" href="favicon.png">
     
@@ -47,16 +46,41 @@
       "logo": "https://splinkapp.com.br/logo-splink-v2.png",
       "image": "https://splinkapp.com.br/automacao-whatsapp-splink.png",
       "description": "Ecossistema completo de automação de WhatsApp, CRM e Agentes de IA.",
+      "telephone": "+55-34-99992-9764",
+      "email": "comercial@splinkapp.com.br",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+55-34-99992-9764",
+        "contactType": "sales",
+        "areaServed": "BR",
+        "availableLanguage": "Portuguese"
+      },
       "sameAs": [
         "https://www.instagram.com/splink.app/"
       ]
     }
     </script>
 
+    <!-- Schema: WebSite + SearchAction -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Splink",
+      "url": "https://splinkapp.com.br/",
+      "inLanguage": "pt-BR",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://splinkapp.com.br/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@1.17.0"></script>
     <link rel="stylesheet" href="index.min.css">
     <style>
         .hero {
@@ -322,7 +346,8 @@
 
             <!-- Main Block Below -->
             <div class="animate-up" style="max-width: 900px;">
-                <h1 id="typewriterHeadline" class="glitch-text" style="font-family: 'Inter', sans-serif; letter-spacing: -1px; color: white; font-size: clamp(40px, 8vw, 72px); margin-bottom: 24px; line-height: 1.1; min-height: 1.2em; cursor: default;">Hacking A.I for Business Performance</h1>
+                <div style="font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 2px; color: rgba(0, 122, 255, 0.9); font-size: 13px; font-weight: 700; margin-bottom: 16px;">Hacking A.I for Business Performance</div>
+                <h1 id="typewriterHeadline" class="glitch-text" style="font-family: 'Inter', sans-serif; letter-spacing: -1px; color: white; font-size: clamp(40px, 8vw, 72px); margin-bottom: 24px; line-height: 1.1; min-height: 1.2em; cursor: default;">Automação de WhatsApp, IA e CRM para Escalar Vendas</h1>
                 <p style="max-width: 600px; margin-bottom: 40px; font-family: 'Inter', sans-serif; color: rgba(255, 255, 255, 0.6); font-size: 18px; line-height: 1.6;">Gere mais receita com protocolos de automação inteligente e extração massiva de dados.</p>
                 <div style="display: flex; gap: 16px; flex-wrap: wrap;">
                     <a href="questionario.html" class="btn btn-primary" style="padding: 18px 40px; font-size: 16px;">INICIAR PROTOCOLO</a>
@@ -730,7 +755,7 @@
     <script>
         // Typewriter Effect
         const headlineElement = document.getElementById('typewriterHeadline');
-        const textToType = "Hacking A.I for Business Performance";
+        const textToType = "Automação de WhatsApp, IA e CRM para Escalar Vendas";
         let charIndex = 0;
 
         function typeHeadline() {

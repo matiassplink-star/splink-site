@@ -4,3 +4,7 @@ temp_seo.txt
 apply_seo.py
 .env
 .DS_Store
+
+# Agent skills tooling (local, nao faz parte do site)
+.agents/
+skills-lock.json

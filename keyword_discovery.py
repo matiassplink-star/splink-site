@@ -69,6 +69,8 @@ CONFIG = {
         "teresina",
         "aracaju",
         "caxias do sul",
+        "santo andré",
+        "baixada santista",
         "brasil",
     ],
 
