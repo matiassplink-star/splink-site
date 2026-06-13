@@ -8,3 +8,6 @@ apply_seo.py
 # Agent skills tooling (local, nao faz parte do site)
 .agents/
 skills-lock.json
+
+# Backup dos originais de imagem (antes da otimizacao)
+_img_originais/

@@ -79,8 +79,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@1.17.0"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <script defer src="https://unpkg.com/lucide@1.17.0"></script>
     <link rel="stylesheet" href="index.min.css">
     <style>
         .hero {
@@ -604,7 +605,7 @@
             
             <div style="flex: 1; min-width: 320px; position: relative;">
                 <div class="glass interactive-card" style="padding: 10px; border-radius: 32px; box-shadow: 0 40px 80px rgba(0,0,0,0.5); transition: transform 0.4s ease, box-shadow 0.4s ease; cursor: pointer;">
-                    <img src="Criar_um_foto_profssional_porfavor_202605051827 (1).jpeg" alt="Marco Matias - O Visionário por trás da Splink" style="width: 100%; height: auto; display: block; border-radius: 22px;">
+                    <img src="Criar_um_foto_profssional_porfavor_202605051827 (1).jpeg" alt="Marco Matias - O Visionário por trás da Splink" loading="lazy" decoding="async" style="width: 100%; height: auto; display: block; border-radius: 22px;">
                 </div>
                 <!-- Floating Badge -->
                 <div class="glass" style="position: absolute; bottom: -20px; left: -20px; padding: 20px; border-radius: 20px; border-left: 4px solid var(--accent);">
@@ -632,7 +633,7 @@
                 <p style="font-style: italic; margin-bottom: 30px; font-size: 16px; line-height: 1.6; color: var(--text-secondary);">"A automação da Splink mudou o jogo para nossa imobiliária. Antes perdíamos 40% dos leads por demora no atendimento, agora a IA qualifica tudo em segundos."</p>
                 <div style="display: flex; align-items: center; gap: 16px;">
                     <div style="width: 48px; height: 48px; border-radius: 50%; background: #333; overflow: hidden; border: 2px solid var(--accent);">
-                        <img src="https://ui-avatars.com/api/?name=Bruno+Cavalcante&background=007aff&color=fff" alt="BC Imóveis" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                        <div aria-label="BC Imóveis" style="width: 100%; height: 100%; background: #007aff; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 20px; font-family: 'Inter', sans-serif;">BC</div>
                     </div>
                     <div>
                         <div style="font-weight: 700; color: white;">Bruno Cavalcante</div>
@@ -649,7 +650,7 @@
                 <p style="font-style: italic; margin-bottom: 30px; font-size: 16px; line-height: 1.6; color: var(--text-secondary);">"O ZapLink é a ferramenta mais estável que já usamos. Escalar o disparo em massa sem perder contas era nosso maior desafio, resolvido em uma semana com a Splink."</p>
                 <div style="display: flex; align-items: center; gap: 16px;">
                     <div style="width: 48px; height: 48px; border-radius: 50%; background: #333; overflow: hidden; border: 2px solid var(--accent);">
-                        <img src="https://ui-avatars.com/api/?name=Ricardo+Moraes&background=007aff&color=fff" alt="Moraes Marketing" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                        <div aria-label="Moraes Marketing" style="width: 100%; height: 100%; background: #007aff; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 20px; font-family: 'Inter', sans-serif;">RM</div>
                     </div>
                     <div>
                         <div style="font-weight: 700; color: white;">Ricardo Moraes</div>
@@ -666,7 +667,7 @@
                 <p style="font-style: italic; margin-bottom: 30px; font-size: 16px; line-height: 1.6; color: var(--text-secondary);">"O CRM integrado e as landing pages de alta conversão triplicaram nosso faturamento trimestral. A equipe de suporte é excepcional e entende de escala."</p>
                 <div style="display: flex; align-items: center; gap: 16px;">
                     <div style="width: 48px; height: 48px; border-radius: 50%; background: #333; overflow: hidden; border: 2px solid var(--accent);">
-                        <img src="https://ui-avatars.com/api/?name=Carla+Dias&background=007aff&color=fff" alt="E-commerce Fashion" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                        <div aria-label="E-commerce Fashion" style="width: 100%; height: 100%; background: #007aff; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 20px; font-family: 'Inter', sans-serif;">CD</div>
                     </div>
                     <div>
                         <div style="font-weight: 700; color: white;">Carla Dias</div>
@@ -787,6 +788,6 @@
             setTimeout(typeHeadline, 500);
         }
     </script>
-    <script src="main.min.js"></script>
+    <script defer src="main.min.js"></script>
 </body>
 </html>
